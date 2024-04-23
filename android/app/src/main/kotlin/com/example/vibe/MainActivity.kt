@@ -1,4 +1,4 @@
-package com.teapotlab.vibe
+package com.teapotlab.Vibe
 
 import io.flutter.embedding.android.FlutterActivity
 

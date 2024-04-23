@@ -1,4 +1,4 @@
-# vibe
+# Vibe
 
 A new Flutter project.
 
