@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Vibe",
+            "name": "vibe",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "Vibe (profile mode)",
+            "name": "vibe (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "Vibe (release mode)",
+            "name": "vibe (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

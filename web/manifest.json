@@ -1,6 +1,6 @@
 {
-    "name": "Vibe",
-    "short_name": "Vibe",
+    "name": "vibe",
+    "short_name": "vibe",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
