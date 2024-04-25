@@ -10,14 +10,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Future<void> readPreferences() async {
-    Provider.of<VibeDatabase>(context, listen: false).fetchPreferences();
-  }
-
   @override
   Widget build(BuildContext context) {
     int? id;
-    readPreferences();
+    context.watch<VibeDatabase>().fetchPreferences();
     List preferences = context.watch<VibeDatabase>().preferences;
     id = preferences.last.id;
     return Scaffold(
