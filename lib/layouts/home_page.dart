@@ -17,10 +17,17 @@ class _HomePageState extends State<HomePage> {
     List preferences = context.watch<VibeDatabase>().preferences;
     id = preferences.last.id;
     return Scaffold(
-      body: Center(child: ElevatedButton(onPressed: () {
-        context.read<VibeDatabase>().toggleTheme(id);
-      }
-      , child: const Text("Let's Vibe"))),
+      body: Center(
+        child: IconButton(
+          onPressed: () {
+            context.read<VibeDatabase>().toggleTheme(id);
+          },
+          icon: const Icon(
+            Icons.play_circle_outline_rounded,
+            size: 50,
+          )
+        )
+      ),
     );
   }
 }
