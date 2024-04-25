@@ -42,7 +42,7 @@ class VibeDatabase extends ChangeNotifier {
       initPreference();
       isDark = currentPreference.first.darkMode!;
     } else if (currentPreference.length > 1) {
-      await isar.writeTxn(() => isar.vibePreferences.clear());
+      // await isar.writeTxn(() => isar.vibePreferences.clear());
       initPreference();
     } else {
       // print("Preference length is ${currentPreference.length}");
@@ -60,6 +60,20 @@ class VibeDatabase extends ChangeNotifier {
       isDark = preferences.first.darkMode;
       // print(currentPreferences.length);
       notifyListeners();
+    }
+  }
+
+  void toggleTheme(id) async {
+    var existingPreference = await isar.vibePreferences.get(id);
+    // print(existingPreference?.darkMode);
+    if (existingPreference != null) {
+      existingPreference.darkMode == false ?  existingPreference.darkMode = true : existingPreference.darkMode = false;
+
+      await isar.writeTxn(() => isar.vibePreferences.put(existingPreference));
+      preferences.first.darkMode = existingPreference.darkMode;
+      isDark = existingPreference.darkMode;
+
+      fetchPreferences();
     }
   }
 }

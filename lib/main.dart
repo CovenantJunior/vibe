@@ -26,11 +26,13 @@ class Vibe extends StatefulWidget {
 }
 
 class _VibeState extends State<Vibe> {
+  
   @override
   Widget build(BuildContext context) {
+    context.read<VibeDatabase>().themePreference();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: context.read<VibeDatabase>().preferences.first.darkMode == true ? ThemeData.dark() : ThemeData.light(),
+      theme: context.watch<VibeDatabase>().isDark == true ? ThemeData.dark() : ThemeData.light(),
       home: const HomePage(),
     );
   }
