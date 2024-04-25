@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vibe/layouts/home_page.dart';
+import 'package:vibe/model/vibe_database.dart';
 
-void main() {
-  runApp(const Vibe());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await VibeDatabase.initialize();
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => VibeDatabase(),
+        )
+      ],
+      child: const Vibe()
+    )
+  );
 }
 
 class Vibe extends StatefulWidget {
@@ -15,9 +28,10 @@ class Vibe extends StatefulWidget {
 class _VibeState extends State<Vibe> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      theme: context.read<VibeDatabase>().preferences.first.darkMode == true ? ThemeData.dark() : ThemeData.light(),
+      home: const HomePage(),
     );
   }
 }
