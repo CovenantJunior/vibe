@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:vibe/components/vibe_drawer.dart';
 import 'package:vibe/model/vibe_database.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,6 +18,8 @@ class _HomePageState extends State<HomePage> {
     List preferences = context.watch<VibeDatabase>().preferences;
     id = preferences.last.id;
     return Scaffold(
+      appBar: AppBar(),
+      drawer: const VibeDrawer(),
       body: Center(
         child: IconButton(
           onPressed: () {
