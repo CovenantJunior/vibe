@@ -55,7 +55,7 @@
 	<string>Your app requires access to the camera for photo and video capture.</string>
 
 	<key>NSAppleMusicUsageDescription</key>
-	<string>Your app requires access to Apple Music.</string>
+	<string>$(PROJECT_NAME) requires access to media library</string>
 
 </dict>
 </plist>

@@ -13,12 +13,14 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
   final OnAudioQuery audioQuery = OnAudioQuery();
 
   Future<List<SongModel>> getAllAudioFiles() async {
-    // Check and request storage permissions
     if (await Permission.storage.request().isGranted) {
-      // Query all audio files on the device
-      return await audioQuery.querySongs();
+      return await audioQuery.querySongs(
+        sortType: SongSortType.TITLE,
+        orderType: OrderType.ASC_OR_SMALLER,
+        uriType: UriType.EXTERNAL,
+        ignoreCase: true,
+      );
     } else {
-      // Return an empty list if permissions are not granted
       return [];
     }
   }
