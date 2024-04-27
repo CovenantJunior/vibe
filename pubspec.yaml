@@ -43,6 +43,7 @@ dependencies:
   flutter_local_notifications: ^17.1.0
   on_audio_query: ^2.9.0
   permission_handler: ^11.3.1
+  flutter_close_app: ^1.0.0
   
 
 dev_dependencies:

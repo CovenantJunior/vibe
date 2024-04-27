@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_close_app/flutter_close_app.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:vibe/components/vibe_drawer.dart';
 import 'package:vibe/tabs/albums.dart';
 import 'package:vibe/tabs/artists.dart';
@@ -15,9 +17,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+  Future<void> requestPermissions() async {
+    if (await Permission.storage.request().isGranted) {
+      // Permission granted, you can proceed
+    } else {
+      // Permission denied, close app
+      FlutterCloseApp.close();
+    }
+  }
+
   late TabController _tabController;
   void search () {
-
+    // search
   }
 
   @override
