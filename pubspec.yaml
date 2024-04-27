@@ -92,9 +92,15 @@ flutter:
   #         style: italic
     - family: Futura
       fonts:
-        - asset: assets/fonts/futura/FuturaCyrillicLight.ttf
-        - asset: assets/fonts/futura/FuturaCyrillicBook.ttf
         - asset: assets/fonts/futura/FuturaCyrillicMedium.ttf
+    
+    - family: Futura Light
+      fonts:
+        - asset: assets/fonts/futura/FuturaCyrillicLight.ttf
+
+    - family: Futura Book
+      fonts:
+        - asset: assets/fonts/futura/FuturaCyrillicBook.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
