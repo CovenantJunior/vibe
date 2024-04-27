@@ -21,6 +21,9 @@ class VibeDrawerTile extends StatelessWidget {
       child: ListTile(
         title: Text(
           title,
+          style: const TextStyle(
+            fontFamily: 'Futura'
+          ),
         ),
         leading: leading,
         onTap: onTap,

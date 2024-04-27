@@ -33,7 +33,7 @@ class _VibePreferenceState extends State<VibePreference> {
         title: Text(
           "Notification",
           style: TextStyle(
-            fontFamily: "Quicksand",
+            fontFamily: "Futura",
             fontWeight: FontWeight.w500,
             fontSize: 20
           ),
@@ -41,7 +41,7 @@ class _VibePreferenceState extends State<VibePreference> {
         content: Text(
           "Notifications are shown at the best time of the day, just sit back",
           style: TextStyle(
-            fontFamily: "Quicksand",
+            fontFamily: "Futura",
             fontWeight: FontWeight.w500,
           )
         ),
@@ -56,7 +56,7 @@ class _VibePreferenceState extends State<VibePreference> {
         title: Text(
           "Clipboard",
           style: TextStyle(
-            fontFamily: "Quicksand",
+            fontFamily: "Futura",
             fontWeight: FontWeight.w500,
             fontSize: 20
           ),
@@ -64,7 +64,7 @@ class _VibePreferenceState extends State<VibePreference> {
         content: Text(
           "Read immediate Clipboard data for a quick task creation",
           style: TextStyle(
-            fontFamily: "Quicksand",
+            fontFamily: "Futura",
             fontWeight: FontWeight.w500,
           )
         ),
@@ -79,7 +79,7 @@ class _VibePreferenceState extends State<VibePreference> {
         title: Text(
           "Speech to Text",
           style: TextStyle(
-            fontFamily: "Quicksand",
+            fontFamily: "Futura",
             fontWeight: FontWeight.w500,
             fontSize: 20
           ),
@@ -87,7 +87,7 @@ class _VibePreferenceState extends State<VibePreference> {
         content: Text(
           "Fill in task description with your voice",
           style: TextStyle(
-            fontFamily: "Quicksand",
+            fontFamily: "Futura",
             fontWeight: FontWeight.w500,
           )
         ),
@@ -102,7 +102,7 @@ class _VibePreferenceState extends State<VibePreference> {
         title: Text(
           "Swipe Dismiss",
           style: TextStyle(
-            fontFamily: "Quicksand",
+            fontFamily: "Futura",
             fontWeight: FontWeight.w500,
             fontSize: 20
           ),
@@ -110,7 +110,7 @@ class _VibePreferenceState extends State<VibePreference> {
         content: Text(
             "Swiping to dismiss results in plans being discarded.",
             style: TextStyle(
-              fontFamily: "Quicksand",
+              fontFamily: "Futura",
               fontWeight: FontWeight.w500,
             )),
       ),
@@ -124,7 +124,7 @@ class _VibePreferenceState extends State<VibePreference> {
         title: Text(
           "Bulk Trash",
           style: TextStyle(
-            fontFamily: "Quicksand",
+            fontFamily: "Futura",
             fontWeight: FontWeight.w500,
             fontSize: 20
           ),
@@ -132,7 +132,7 @@ class _VibePreferenceState extends State<VibePreference> {
         content: Text(
             "This option helps you clear all tasks/plans in one tap",
             style: TextStyle(
-              fontFamily: "Quicksand",
+              fontFamily: "Futura",
               fontWeight: FontWeight.w500,
             )),
       ),
@@ -157,9 +157,9 @@ class _VibePreferenceState extends State<VibePreference> {
       appBar: AppBar(
         // Used AppBar just for the back icon
         title: const Text(
-          "Preference",
+          "Preferences",
           style: TextStyle(
-            fontFamily: "Quicksand",
+            fontFamily: "Futura",
             fontWeight: FontWeight.w500
           ),
         ),
@@ -185,7 +185,7 @@ class _VibePreferenceState extends State<VibePreference> {
                           style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 12,
-                            fontFamily: "Quicksand"
+                            fontFamily: "Futura"
                           ),
                         ),
                       ],
@@ -216,7 +216,7 @@ class _VibePreferenceState extends State<VibePreference> {
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12,
-                                fontFamily: "Quicksand"
+                                fontFamily: "Futura"
                               ),
                             ),
                             const SizedBox(width: 7),
