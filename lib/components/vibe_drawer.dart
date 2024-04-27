@@ -16,7 +16,12 @@ class _VibeDrawerState extends State<VibeDrawer> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const DrawerHeader(child: Icon(Icons.music_note_outlined)),
+            const DrawerHeader(
+              child: Icon(
+                  Icons.music_note_outlined,
+                  color: Colors.yellow,
+                ),
+              ),
 
             VibeDrawerTile(
               title: 'Home',
