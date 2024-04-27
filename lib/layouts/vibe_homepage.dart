@@ -16,6 +16,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  void search () {
+
+  }
 
   @override
   void initState() {
@@ -29,6 +32,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return Scaffold(
       appBar: AppBar(
         title: const Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
               'Let\'s Vibe',
@@ -91,6 +95,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             ),
           ]
         ),
+        actions: [
+          Tooltip(
+            message: "Search",
+            child: IconButton(
+              onPressed: search,
+              icon: const Icon(Icons.search_rounded)
+            ),
+          )
+        ],
       ),
       drawer: const VibeDrawer(),
       body: TabBarView(
