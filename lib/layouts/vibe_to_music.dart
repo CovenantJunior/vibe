@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:on_audio_query_platform_interface/src/models/song_model.dart';
-import 'package:vibe/components/vibe_cover.dart';
+import 'package:vibe/components/vibe_to_lyrics.dart';
 
 class VibeToMusic extends StatefulWidget {
   final SongModel song;
@@ -14,34 +14,55 @@ class VibeToMusic extends StatefulWidget {
   State<VibeToMusic> createState() => _VibeToMusicState();
 }
 
-class _VibeToMusicState extends State<VibeToMusic> {
+class _VibeToMusicState extends State<VibeToMusic> with SingleTickerProviderStateMixin {
+
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+      // Initialize the TabController with the number of tabs you need
+      _tabController = TabController(length: 2, vsync: this);
+    }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          VibeCover(
-            child: QueryArtworkWidget(
-              id: widget.song.id,
-              type: ArtworkType.AUDIO,
-              quality: 100,
-              artworkHeight: 200,
-              artworkWidth: 200,
-            )
-          ),
-          const SizedBox(height: 20),
-          Center(
-            child: Text(
-              widget.song.title,
-              style: const TextStyle(
+         bottom: TabBar(
+          isScrollable: true,
+          tabAlignment: TabAlignment.start,
+          controller: _tabController,
+          indicatorColor: Colors.yellow,
+          dividerColor: Colors.transparent,
+          tabs: const [
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                'Song',
+                style: TextStyle(
+                  fontFamily: 'Futura'
+                ),
+              ),
+            ),
+            Text(
+              'Lyrics',
+              style: TextStyle(
                 fontFamily: 'Futura'
               ),
-            )
+            ),
+          ]
+         )
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          Tab(
+            child: VibeToMusic(song: widget.song)
           ),
+          Tab(
+            child: VibeToLyrics(song: widget.song)
+          )
         ],
       ),
     );
