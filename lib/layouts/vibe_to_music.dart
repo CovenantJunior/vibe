@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:on_audio_query_platform_interface/src/models/song_model.dart';
+import 'package:vibe/components/vibe_cover.dart';
 
 class VibeToMusic extends StatefulWidget {
   final SongModel song;
@@ -19,13 +20,21 @@ class _VibeToMusicState extends State<VibeToMusic> {
       appBar: AppBar(
         
       ),
-      body: Center(
-        child: Text(
-          widget.song.title,
-          style: const TextStyle(
-            fontFamily: 'Futura'
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          VibeCover(
+            child: Icon(Icons.music_note_outlined)
           ),
-        )
+          Center(
+            child: Text(
+              widget.song.title,
+              style: const TextStyle(
+                fontFamily: 'Futura'
+              ),
+            )
+          ),
+        ],
       ),
     );
   }

@@ -122,6 +122,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         ),
         actions: [
           Tooltip(
+            message: "Theme",
+            child: IconButton(
+              onPressed: search,
+              icon: const Icon(Icons.color_lens_outlined)
+            ),
+          ),
+          Tooltip(
             message: "Search",
             child: IconButton(
               onPressed: search,

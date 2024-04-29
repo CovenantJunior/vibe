@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class VibeCover extends StatefulWidget {
-  const VibeCover({super.key});
+  final Widget child;
+   const VibeCover({
+    super.key,
+    required this.child
+  });
 
   @override
   State<VibeCover> createState() => _VibeCoverState();
@@ -24,6 +28,7 @@ class _VibeCoverState extends State<VibeCover> {
             offset: Offset(-4, -4))
         ]
       ),
+      child: widget.child,
     );
   }
 }
