@@ -13,32 +13,44 @@ class _VibeDrawerState extends State<VibeDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const DrawerHeader(
-              child: Icon(
-                  Icons.music_note_outlined,
-                  color: Colors.yellow,
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color.fromARGB(106, 13, 32, 96),
+              Color.fromARGB(121, 137, 27, 27),
+            ],
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const DrawerHeader(
+                child: Icon(
+                    Icons.music_note_outlined,
+                    color: Colors.yellow,
+                  ),
                 ),
-              ),
-
-            VibeDrawerTile(
-              title: 'Home',
-              leading: const Icon(Icons.home_outlined),
-              onTap: () {
-                Navigator.pop(context);                
-              }),
-
-            VibeDrawerTile(
-              title: 'Preferences',
-              leading: const Icon(Icons.settings_suggest_sharp),
-              // leading: const Icon(Icons.settings_outlined),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const VibePreference()));  
-              }),
-          ]
+        
+              VibeDrawerTile(
+                title: 'Home',
+                leading: const Icon(Icons.home_outlined),
+                onTap: () {
+                  Navigator.pop(context);                
+                }),
+        
+              VibeDrawerTile(
+                title: 'Preferences',
+                leading: const Icon(Icons.settings_suggest_sharp),
+                // leading: const Icon(Icons.settings_outlined),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const VibePreference()));
+                }),
+            ]
+          ),
         ),
       ),
     );

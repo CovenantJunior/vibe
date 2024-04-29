@@ -3,11 +3,13 @@ import 'package:flutter_close_app/flutter_close_app.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:vibe/components/vibe_drawer.dart';
 import 'package:vibe/tabs/albums.dart';
+import 'package:vibe/tabs/apple_music.dart';
 import 'package:vibe/tabs/artists.dart';
 import 'package:vibe/tabs/folders.dart';
 import 'package:vibe/tabs/genres.dart';
 import 'package:vibe/tabs/playlists.dart';
 import 'package:vibe/tabs/songs.dart';
+import 'package:vibe/tabs/spotify.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -35,7 +37,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   void initState() {
     super.initState();
     // Initialize the TabController with the number of tabs you need
-    _tabController = TabController(length: 6, vsync: this);
+    _tabController = TabController(length: 8, vsync: this);
   }
 
   @override
@@ -104,6 +106,18 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 fontFamily: 'Futura'
               ),
             ),
+            Text(
+              'Spotify',
+              style: TextStyle(
+                fontFamily: 'Futura'
+              ),
+            ),
+            Text(
+              'Apple Music',
+              style: TextStyle(
+                fontFamily: 'Futura'
+              ),
+            ),
           ]
         ),
         actions: [
@@ -121,22 +135,28 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         controller: _tabController,
         children: const [
           Tab(
-            child: Songs(),
+            child: Songs()
           ),
           Tab(
             child: Playlists()
           ),
           Tab(
-            child: Folders(),
+            child: Folders()
           ),
           Tab(
-            child: Albums(),
+            child: Albums()
           ),
           Tab(
-            child: Artists(),
+            child: Artists()
           ),
           Tab(
-            child: Genres(),
+            child: Genres()
+          ),
+          Tab(
+            child: Spotify()
+          ),
+          Tab(
+            child: AppleMusic()
           ),
         ]
       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:vibe/layouts/vibe_to_music.dart';
 
 class VibeMusicTile extends StatefulWidget {
   const VibeMusicTile({super.key});
@@ -41,7 +43,6 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
       body: FutureBuilder<List<SongModel>>(
         future: _audioFilesFuture,
         builder: (context, snapshot) {
-          print(snapshot.data);
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
@@ -54,18 +55,41 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
               itemCount: audioFiles.length,
               itemBuilder: (context, index) {
                 SongModel song = audioFiles[index];
-                return Card(
-                  child: ListTile(
-                    leading: QueryArtworkWidget(
-                      id: song.id,
-                      type: ArtworkType.AUDIO,
-                      nullArtworkWidget: const Icon(Icons.music_note),
-                    ),
-                    title: Text(song.title),
-                    subtitle: Text(song.artist ?? 'Unknown Artist'),
-                    onTap: () {
-                      // Handle song selection
-                    },
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                  child: Container(
+                    child: ListTile(
+                      dense: true,
+                      leading: QueryArtworkWidget(
+                        artworkWidth: 30,
+                        artworkHeight: 30,
+                        id: song.id,
+                        quality: 100,
+                        artworkQuality: FilterQuality.high,
+                        type: ArtworkType.AUDIO,
+                        nullArtworkWidget: const Icon(
+                          Icons.music_note_outlined,
+                          size: 30,
+                        ),
+                      ),
+                      title: Text(
+                        song.title,
+                        style: const TextStyle(
+                          fontFamily: 'Futura'
+                        ),
+                      ),
+                      subtitle: Text(
+                        song.artist ?? 'Unknown Artist',
+                        style: const TextStyle(
+                          fontFamily: 'Futura'
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const VibeToMusic()));
+                      },
+                    ).animate().fadeIn().scale(
+                      duration: const Duration(milliseconds: 300)
+                    )
                   ),
                 );
               },

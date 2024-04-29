@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vibe/layouts/vibe_homepage.dart';
 import 'package:vibe/layouts/vibe_preferences.dart';
+import 'package:vibe/layouts/vibe_to_music.dart';
 import 'package:vibe/model/vibe_database.dart';
 
 void main() async {
@@ -37,6 +38,7 @@ class _VibeState extends State<Vibe> {
       routes: {
         '/home': (context) => const HomePage(),
         '/preferences': (context) => const VibePreference(),
+        '/vibe': (context) => const VibeToMusic()
       },
       home: const HomePage(),
     );
