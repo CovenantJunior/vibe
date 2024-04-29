@@ -167,6 +167,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           ),
         ]
       ),
+      floatingActionButton: const FloatingActionButton(
+        backgroundColor: Color.fromARGB(255, 202, 202, 123),
+        onPressed: null,
+        child: Icon(
+          Icons.shuffle,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }

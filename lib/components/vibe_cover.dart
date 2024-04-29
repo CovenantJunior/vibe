@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:vibe/model/vibe_database.dart';
 
 class VibeCover extends StatefulWidget {
   final Widget child;
@@ -14,18 +16,44 @@ class VibeCover extends StatefulWidget {
 class _VibeCoverState extends State<VibeCover> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    context.read<VibeDatabase>().fetchPreferences();
+    return context.read<VibeDatabase>().preferences.first.darkMode == false ? Container(
       decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(10),
+          bottomRight: Radius.circular(10),
+          topLeft: Radius.circular(10),
+          bottomLeft: Radius.circular(10)
+        ),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.shade500,
-            blurRadius: 15,
-            offset: const Offset(14, 14)
+            blurRadius: 10,
+            offset: const Offset(4, 4)
           ),
           const BoxShadow(
             color: Colors.white,
-            blurRadius: 15,
-            offset: Offset(-4, -4))
+            blurRadius: 10,
+            offset: Offset(-4, -4)
+          )
+        ]
+      ),
+      child: widget.child,
+    ) : Container(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(10),
+          bottomRight: Radius.circular(10),
+          topLeft: Radius.circular(10),
+          bottomLeft: Radius.circular(10)
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade500,
+          ),
+          const BoxShadow(
+            color: Colors.white,
+          )
         ]
       ),
       child: widget.child,
