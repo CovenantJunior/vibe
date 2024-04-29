@@ -85,7 +85,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
                         ),
                       ),
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const VibeToMusic()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
                       },
                     ).animate().fadeIn().scale(
                       duration: const Duration(milliseconds: 300)
