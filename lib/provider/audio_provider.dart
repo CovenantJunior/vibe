@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 /*
  List of all Audio Functions 
@@ -66,10 +67,10 @@ class AudioProvider extends ChangeNotifier{
   }
 
   void deleteMusic(uri) async {
-
+    // get permission then delete
   }
 
   void fetchMusicLyrics(title) async {
-
+    // http
   }
 }
