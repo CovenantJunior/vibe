@@ -9,4 +9,5 @@ class VibePreferences {
   bool? darkMode;
   bool? notification;
   bool? vibration;
+  int? skin;
 }

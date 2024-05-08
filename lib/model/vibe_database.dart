@@ -76,4 +76,17 @@ class VibeDatabase extends ChangeNotifier {
       fetchPreferences();
     }
   }
+
+  void toggleSkin(id) async {
+    var existingPreference = await isar.vibePreferences.get(id);
+    // print(existingPreference?.skin);
+    if (existingPreference != null) {
+      existingPreference.skin == id;
+
+      await isar.writeTxn(() => isar.vibePreferences.put(existingPreference));
+      preferences.first.skin = existingPreference.skin;
+
+      fetchPreferences();
+    }
+  }
 }
