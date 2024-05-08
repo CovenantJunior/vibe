@@ -17,6 +17,8 @@ class VibeToSong extends StatefulWidget {
 }
 
 class _VibeToSongState extends State<VibeToSong> {
+  AudioProvider audioProvider = AudioProvider();
+
   @override
   Widget build(BuildContext context) {
     int sec = widget.song.duration!;
@@ -94,6 +96,9 @@ class _VibeToSongState extends State<VibeToSong> {
                       value: 0,
                       activeColor: const Color.fromARGB(255, 202, 202, 123),
                       thumbColor: const Color.fromARGB(255, 202, 202, 123),
+                      onChangeStart: (value) {
+
+                      },
                       onChanged: (value) {
                     
                       }
@@ -127,7 +132,7 @@ class _VibeToSongState extends State<VibeToSong> {
                         children: [
                           IconButton(
                             onPressed: () {
-                              AudioProvider().previousMusic(widget.song.id, widget.song.uri);
+                              audioProvider.previousMusic(widget.song.id, widget.song.uri);
                             },
                             icon: const Icon(
                               Icons.skip_previous_outlined,
@@ -135,18 +140,18 @@ class _VibeToSongState extends State<VibeToSong> {
                               color: Color.fromARGB(255, 202, 202, 123),
                             )
                           ),
-                          AudioProvider().isPlaying == true ? IconButton(
+                          audioProvider.isPlaying == true ? IconButton(
                             onPressed: (){
-                              AudioProvider().pauseMusic();
+                              audioProvider.pauseMusic();
                             },
                             icon: const Icon(
                               Icons.pause_outlined,
                               size: 30,
                               color: Color.fromARGB(255, 202, 202, 123),
                             )
-                          ) : AudioProvider().resume == false ? IconButton(
+                          ) : audioProvider.resume == false ? IconButton(
                             onPressed: (){
-                              AudioProvider().playMusic(widget.song.uri);
+                              audioProvider.playMusic(widget.song.uri);
                             },
                             icon: const Icon(
                               Icons.play_arrow_outlined,
@@ -155,9 +160,9 @@ class _VibeToSongState extends State<VibeToSong> {
                             )
                           ) : IconButton(
                             onPressed: (){
-                              AudioProvider().resumeMusic();
-                              AudioProvider().isPlaying = true;
-                              AudioProvider().resume = false;
+                              audioProvider.resumeMusic();
+                              audioProvider.isPlaying = true;
+                              audioProvider.resume = false;
                             },
                             icon: const Icon(
                               Icons.play_arrow_outlined,
@@ -167,7 +172,7 @@ class _VibeToSongState extends State<VibeToSong> {
                           ),
                           IconButton(
                             onPressed: () {
-                              AudioProvider().nextMusic(widget.song.id, widget.song.uri);
+                              audioProvider.nextMusic(widget.song.id, widget.song.uri);
                             },
                             icon: const Icon(
                               Icons.skip_next_outlined,

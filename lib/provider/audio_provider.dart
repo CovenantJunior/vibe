@@ -1,6 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 /*
  List of all Audio Functions 
@@ -23,6 +22,9 @@ class AudioProvider extends ChangeNotifier{
   void playMusic(uri) async {
     print(uri);
     await _audioPlayer.play(UrlSource(uri));
+    _audioPlayer.onPlayerComplete.listen((event) {
+      _audioPlayer.release();
+    });
     isPlaying = true;
     resume = false;
     notifyListeners();
@@ -53,7 +55,7 @@ class AudioProvider extends ChangeNotifier{
   }
 
   void previousMusic(id, uri) async {
-    if (id > 0) {
+    if (id >= 0) {
       songIndex = id;
       await _audioPlayer.stop();
       await _audioPlayer.play(uri);
