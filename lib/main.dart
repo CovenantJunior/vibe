@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:vibe/layouts/vibe_homepage.dart';
 import 'package:vibe/layouts/vibe_preferences.dart';
 import 'package:vibe/model/vibe_database.dart';
+import 'package:vibe/provider/audio_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,6 +13,9 @@ void main() async {
       providers: [
         ChangeNotifierProvider(
           create: (context) => VibeDatabase(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AudioProvider(),
         )
       ],
       child: const Vibe()

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:on_audio_query_platform_interface/src/models/song_model.dart';
 import 'package:vibe/components/vibe_to_lyrics.dart';
 import 'package:vibe/components/vibe_to_song.dart';
 
