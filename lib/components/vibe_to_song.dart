@@ -105,7 +105,7 @@ class _VibeToSongState extends State<VibeToSong> {
                           ),
                         ),
                         Text(
-                          "${songDuration / 60}:${songDuration % 60}",
+                          "${(songDuration / 60).floor().toString()}:${(songDuration % 60).toString().padLeft(2, '0')}",
                           style: const TextStyle(
                             fontFamily: 'Futura',
                           ),
