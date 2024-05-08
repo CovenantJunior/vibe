@@ -17,18 +17,23 @@ const VibePreferencesSchema = CollectionSchema(
   name: r'VibePreferences',
   id: -5059407529952187022,
   properties: {
-    r'notification': PropertySchema(
+    r'darkMode': PropertySchema(
       id: 0,
+      name: r'darkMode',
+      type: IsarType.bool,
+    ),
+    r'notification': PropertySchema(
+      id: 1,
       name: r'notification',
       type: IsarType.bool,
     ),
     r'skin': PropertySchema(
-      id: 1,
+      id: 2,
       name: r'skin',
       type: IsarType.long,
     ),
     r'vibration': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'vibration',
       type: IsarType.bool,
     )
@@ -62,9 +67,10 @@ void _vibePreferencesSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeBool(offsets[0], object.notification);
-  writer.writeLong(offsets[1], object.skin);
-  writer.writeBool(offsets[2], object.vibration);
+  writer.writeBool(offsets[0], object.darkMode);
+  writer.writeBool(offsets[1], object.notification);
+  writer.writeLong(offsets[2], object.skin);
+  writer.writeBool(offsets[3], object.vibration);
 }
 
 VibePreferences _vibePreferencesDeserialize(
@@ -74,10 +80,11 @@ VibePreferences _vibePreferencesDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = VibePreferences();
+  object.darkMode = reader.readBoolOrNull(offsets[0]);
   object.id = id;
-  object.notification = reader.readBoolOrNull(offsets[0]);
-  object.skin = reader.readLongOrNull(offsets[1]);
-  object.vibration = reader.readBoolOrNull(offsets[2]);
+  object.notification = reader.readBoolOrNull(offsets[1]);
+  object.skin = reader.readLongOrNull(offsets[2]);
+  object.vibration = reader.readBoolOrNull(offsets[3]);
   return object;
 }
 
@@ -91,8 +98,10 @@ P _vibePreferencesDeserializeProp<P>(
     case 0:
       return (reader.readBoolOrNull(offset)) as P;
     case 1:
-      return (reader.readLongOrNull(offset)) as P;
+      return (reader.readBoolOrNull(offset)) as P;
     case 2:
+      return (reader.readLongOrNull(offset)) as P;
+    case 3:
       return (reader.readBoolOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -194,6 +203,34 @@ extension VibePreferencesQueryWhere
 
 extension VibePreferencesQueryFilter
     on QueryBuilder<VibePreferences, VibePreferences, QFilterCondition> {
+  QueryBuilder<VibePreferences, VibePreferences, QAfterFilterCondition>
+      darkModeIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'darkMode',
+      ));
+    });
+  }
+
+  QueryBuilder<VibePreferences, VibePreferences, QAfterFilterCondition>
+      darkModeIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'darkMode',
+      ));
+    });
+  }
+
+  QueryBuilder<VibePreferences, VibePreferences, QAfterFilterCondition>
+      darkModeEqualTo(bool? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'darkMode',
+        value: value,
+      ));
+    });
+  }
+
   QueryBuilder<VibePreferences, VibePreferences, QAfterFilterCondition>
       idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
@@ -390,6 +427,20 @@ extension VibePreferencesQueryLinks
 extension VibePreferencesQuerySortBy
     on QueryBuilder<VibePreferences, VibePreferences, QSortBy> {
   QueryBuilder<VibePreferences, VibePreferences, QAfterSortBy>
+      sortByDarkMode() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'darkMode', Sort.asc);
+    });
+  }
+
+  QueryBuilder<VibePreferences, VibePreferences, QAfterSortBy>
+      sortByDarkModeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'darkMode', Sort.desc);
+    });
+  }
+
+  QueryBuilder<VibePreferences, VibePreferences, QAfterSortBy>
       sortByNotification() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'notification', Sort.asc);
@@ -433,6 +484,20 @@ extension VibePreferencesQuerySortBy
 
 extension VibePreferencesQuerySortThenBy
     on QueryBuilder<VibePreferences, VibePreferences, QSortThenBy> {
+  QueryBuilder<VibePreferences, VibePreferences, QAfterSortBy>
+      thenByDarkMode() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'darkMode', Sort.asc);
+    });
+  }
+
+  QueryBuilder<VibePreferences, VibePreferences, QAfterSortBy>
+      thenByDarkModeDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'darkMode', Sort.desc);
+    });
+  }
+
   QueryBuilder<VibePreferences, VibePreferences, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -490,6 +555,13 @@ extension VibePreferencesQuerySortThenBy
 extension VibePreferencesQueryWhereDistinct
     on QueryBuilder<VibePreferences, VibePreferences, QDistinct> {
   QueryBuilder<VibePreferences, VibePreferences, QDistinct>
+      distinctByDarkMode() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'darkMode');
+    });
+  }
+
+  QueryBuilder<VibePreferences, VibePreferences, QDistinct>
       distinctByNotification() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'notification');
@@ -515,6 +587,12 @@ extension VibePreferencesQueryProperty
   QueryBuilder<VibePreferences, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
+    });
+  }
+
+  QueryBuilder<VibePreferences, bool?, QQueryOperations> darkModeProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'darkMode');
     });
   }
 

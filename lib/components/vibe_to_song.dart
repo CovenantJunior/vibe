@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:vibe/audioplayer/audioplayer.dart';
 import 'package:vibe/components/vibe_cover.dart';
 
 class VibeToSong extends StatefulWidget {
@@ -114,30 +115,60 @@ class _VibeToSongState extends State<VibeToSong> {
                     ),
                   ),
                   
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                          onPressed: null,
-                          icon: Icon(
+                          onPressed: () {
+                            Player().previousMusic(widget.song.uri);
+                          },
+                          icon: const Icon(
                             Icons.skip_previous_outlined,
                             size: 30,
                             color: Color.fromARGB(255, 202, 202, 123),
                           )
                         ),
-                        IconButton(
-                          onPressed: null,
-                          icon: Icon(
+                        Player().isPlaying == true ? IconButton(
+                          onPressed: (){
+                            Player().pauseMusic();
+                            Player().isPlaying = false;
+                            Player().resume = true;
+                          },
+                          icon: const Icon(
+                            Icons.pause_outlined,
+                            size: 30,
+                            color: Color.fromARGB(255, 202, 202, 123),
+                          )
+                        ) : Player().resume == false ? IconButton(
+                          onPressed: (){
+                            Player().playMusic(widget.song.uri);
+                            Player().isPlaying = true;
+                            Player().resume = false;
+                          },
+                          icon: const Icon(
+                            Icons.play_arrow_outlined,
+                            size: 30,
+                            color: Color.fromARGB(255, 202, 202, 123),
+                          )
+                        ) : IconButton(
+                          onPressed: (){
+                            Player().resumeMusic();
+                            Player().isPlaying = true;
+                            Player().resume = false;
+                          },
+                          icon: const Icon(
                             Icons.play_arrow_outlined,
                             size: 30,
                             color: Color.fromARGB(255, 202, 202, 123),
                           )
                         ),
                         IconButton(
-                          onPressed: null,
-                          icon: Icon(
+                          onPressed: () {
+                            Player().nextMusic(widget.song.uri);
+                          },
+                          icon: const Icon(
                             Icons.skip_next_outlined,
                             size: 30,
                             color: Color.fromARGB(255, 202, 202, 123),
