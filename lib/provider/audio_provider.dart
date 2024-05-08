@@ -18,16 +18,22 @@ class AudioProvider extends ChangeNotifier{
 
   bool resume = false;
 
+  void timer () {
+    
+  }
+
   
-  void playMusic(uri) async {
-    print(uri);
+  void playMusic(id, uri, duration) async {
+    setSongIndex(id);
     await _audioPlayer.play(UrlSource(uri));
     _audioPlayer.onPlayerComplete.listen((event) {
-      _audioPlayer.release();
+      _audioPlayer.stop();
     });
     isPlaying = true;
     resume = false;
     notifyListeners();
+
+    timer();
   }
 
   void resumeMusic() async {
@@ -74,5 +80,15 @@ class AudioProvider extends ChangeNotifier{
 
   void fetchMusicLyrics(title) async {
     // http
+  }
+
+  void setPlaylistCount(count) {
+    playlistCount = count;
+    notifyListeners();
+  }
+
+  void setSongIndex (id) {
+    songIndex = id;
+    notifyListeners();
   }
 }

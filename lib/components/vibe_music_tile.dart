@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:vibe/layouts/vibe_to_music.dart';
+import 'package:vibe/provider/audio_provider.dart';
 
 class VibeMusicTile extends StatefulWidget {
   const VibeMusicTile({super.key});
@@ -39,6 +40,8 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
 
   @override
   Widget build(BuildContext context) {
+    AudioProvider audioProvider = AudioProvider();
+
     return Scaffold(
       body: FutureBuilder<List<SongModel>>(
         future: _audioFilesFuture,
@@ -54,7 +57,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
             return ListView.builder(
               itemCount: audioFiles.length,
               itemBuilder: (context, index) {
-                
+                audioProvider.setPlaylistCount(audioFiles.length);
                 SongModel song = audioFiles[index];
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),

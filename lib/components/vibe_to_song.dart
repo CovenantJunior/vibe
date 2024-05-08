@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -23,7 +26,14 @@ class _VibeToSongState extends State<VibeToSong> {
   Widget build(BuildContext context) {
     int sec = widget.song.duration!;
     int songDuration = Duration(milliseconds: sec).inSeconds;
-
+     Duration currentDuration;
+     AudioPlayer audioPlayer = AudioPlayer();
+     audioPlayer.onPositionChanged.listen((Duration position) {
+      setState(() {
+        currentDuration = position;
+      });
+    });
+     
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Column(
@@ -93,14 +103,17 @@ class _VibeToSongState extends State<VibeToSong> {
                     Slider(
                       min: 0,
                       max: 1,
-                      value: 0,
+                      value: 0.5,
                       activeColor: const Color.fromARGB(255, 202, 202, 123),
                       thumbColor: const Color.fromARGB(255, 202, 202, 123),
-                      onChangeStart: (value) {
+                      onChanged: (value) {
 
                       },
-                      onChanged: (value) {
-                    
+                      onChangeStart: (value) {
+                        value = audioProvider.currentDuration.inSeconds/audioProvider.totalDuration.inSeconds;
+                      },
+                      onChangeEnd: (value) {
+                        audioProvider.seekDuration(songDuration);
                       }
                     ),
                     
@@ -151,7 +164,7 @@ class _VibeToSongState extends State<VibeToSong> {
                             )
                           ) : audioProvider.resume == false ? IconButton(
                             onPressed: (){
-                              audioProvider.playMusic(widget.song.uri);
+                              audioProvider.playMusic(widget.song.id, widget.song.uri, widget.song.duration);
                             },
                             icon: const Icon(
                               Icons.play_arrow_outlined,
