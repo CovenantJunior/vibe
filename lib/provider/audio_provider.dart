@@ -1,4 +1,6 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'dart:async';
+
+import 'package:just_audio/just_audio.dart';
 import 'package:flutter/foundation.dart';
 
 /*
@@ -6,9 +8,7 @@ import 'package:flutter/foundation.dart';
 */
 class AudioProvider extends ChangeNotifier{
 
-  final AudioPlayer _audioPlayer = AudioPlayer(
-    playerId: "0"
-  );
+  final _audioPlayer = AudioPlayer();
 
   final playerState = PlayerState;
 
@@ -21,43 +21,39 @@ class AudioProvider extends ChangeNotifier{
   bool isPlaying = false;
 
   bool resume = false;
-
-  void timer () {
-    
-  }
-
   
   Future<void> playMusic(id, uri, duration) async {
     _audioPlayer.stop();
     setSongIndex(id);
-    _audioPlayer.setReleaseMode(ReleaseMode.release);
-    totalDuration = Duration(milliseconds: duration);
-    await _audioPlayer.play(UrlSource(uri));
+    totalDuration = _audioPlayer.duration!;
+    currentDuration = _audioPlayer.position;
+    await _audioPlayer.setUrl(uri);
+    await _audioPlayer.play();
     isPlaying = true;
     resume = false;
     notifyListeners();
-    _audioPlayer.onPlayerComplete.listen((event) {
-    }, onDone: () {
-      stopMusic();
-    },);
-    _audioPlayer.onPlayerComplete.last.then((value) => stopMusic());
-    _audioPlayer.onPositionChanged.listen((Duration position) {
-      currentDuration = position;
-      notifyListeners();
-      if (currentDuration.inMilliseconds == totalDuration.inMilliseconds || (currentDuration.inMilliseconds / totalDuration.inMilliseconds >= 1)) {
-        stopMusic();
+    _audioPlayer.playerStateStream.listen((state) {
+      if (state.playing) {
+        _audioPlayer.positionStream.listen((event) {
+          currentDuration = _audioPlayer.position;
+          notifyListeners();
+        });
+      } else {
+        switch (state.processingState) {
+          /* case ProcessingState.idle: ...
+          case ProcessingState.loading: ...
+          case ProcessingState.buffering: ...
+          case ProcessingState.ready: ... */
+          case ProcessingState.completed: stopMusic();
+          default: null;
+        }
       }
-      // print(currentDuration.inMilliseconds);
-      // print(totalDuration.inMilliseconds);
-      // print((currentDuration.inSeconds/totalDuration.inSeconds).toDouble());
-    }, onDone: () {
-      stopMusic();
-    },);
+    });
   }
  
   Future<void> stopMusic() async {
+    print("Stop");
     await _audioPlayer.stop();
-    // print("Stop");
     currentDuration = Duration.zero;
     isPlaying = false;
     resume = false;
@@ -65,13 +61,14 @@ class AudioProvider extends ChangeNotifier{
   }
 
   void resumeMusic() async {
-    await _audioPlayer.resume();
+    await _audioPlayer.play();
     isPlaying = true;
     resume = false;
     notifyListeners();
   }
 
-  void pauseMusic() async {
+  void pauseMusic(uri) async {
+    print("Pause");
     await _audioPlayer.pause();
     isPlaying = false;
     resume = true;
@@ -81,17 +78,15 @@ class AudioProvider extends ChangeNotifier{
   void nextMusic(id, uri, duration) async {
     if (id < (playlistCount! - 1)) {
       songIndex = id;
-      await _audioPlayer.stop();
       playMusic(id, uri, duration);
     } else {
       // Last song playing (if not shuffling)
     }
   }
 
-  void previousMusic(id, uri, duration) async {
+  void previousMusic(id, uri, duration) async {    
     if (id >= 0) {
       songIndex = id;
-      await _audioPlayer.stop();
       playMusic(id, uri, duration);
     } else {
       // First song playing (if not shuffling)
@@ -117,11 +112,6 @@ class AudioProvider extends ChangeNotifier{
 
   void setSongIndex (id) {
     songIndex = id;
-    notifyListeners();
-  }
-
-  void setTotalDuration(duration) {
-    totalDuration = duration;
     notifyListeners();
   }
 }

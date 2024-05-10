@@ -1,4 +1,3 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -18,29 +17,7 @@ class VibeToSong extends StatefulWidget {
   State<VibeToSong> createState() => _VibeToSongState();
 }
 
-class _VibeToSongState extends State<VibeToSong> {  
-  late AudioPlayer player = AudioPlayer(
-    playerId: '0'
-  );
-
-  @override
-  void initState() {
-    super.initState();
-
-    // Create the audio player.
-    player = AudioPlayer();
-
-    // Set the release mode to keep the source after playback has completed.
-    player.setReleaseMode(ReleaseMode.release);
-  }
-
-  @override
-  void dispose() {
-    // Release all sources and dispose the player.
-    player.dispose();
-
-    super.dispose();
-  }
+class _VibeToSongState extends State<VibeToSong> { 
 
   @override
   Widget build(BuildContext context) {
@@ -118,12 +95,8 @@ class _VibeToSongState extends State<VibeToSong> {
                     Slider(
                       min: 0, 
                       max: 1,
-                      value: audioProvider.totalDuration.inMilliseconds == 0
-                        ? 0.0 // Return 0.0 if total duration is zero
-                        : (audioProvider.currentDuration.inMilliseconds /
-                                audioProvider.totalDuration.inMilliseconds)
-                            .clamp(0.0,
-                                1.0), // Clamp the value between 0.0 and 1.0
+                      value: (audioProvider.currentDuration.inMilliseconds /
+                                audioProvider.totalDuration.inMilliseconds).clamp(0.0,1.0), // Clamp the value between 0.0 and 1.0
 
                       activeColor: const Color.fromARGB(255, 202, 202, 123),
                       thumbColor: const Color.fromARGB(255, 202, 202, 123),
@@ -176,7 +149,7 @@ class _VibeToSongState extends State<VibeToSong> {
                           ),
                           audioProvider.isPlaying == true ? IconButton(
                             onPressed: (){
-                              audioProvider.pauseMusic();
+                              audioProvider.pauseMusic(widget.song.uri);
                             },
                             icon: const Icon(
                               Icons.pause_outlined,
