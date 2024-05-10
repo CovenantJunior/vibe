@@ -28,37 +28,39 @@ class AudioProvider extends ChangeNotifier{
 
   
   Future<void> playMusic(id, uri, duration) async {
-    stopMusic();
+    _audioPlayer.stop();
     setSongIndex(id);
     _audioPlayer.setReleaseMode(ReleaseMode.release);
     totalDuration = Duration(milliseconds: duration);
-    print(totalDuration);
     await _audioPlayer.play(UrlSource(uri));
     isPlaying = true;
     resume = false;
     notifyListeners();
     _audioPlayer.onPlayerComplete.listen((event) {
-      print("Stop");
-      currentDuration = Duration.zero;
+    }, onDone: () {
       stopMusic();
-    });
+    },);
+    _audioPlayer.onPlayerComplete.last.then((value) => stopMusic());
     _audioPlayer.onPositionChanged.listen((Duration position) {
       currentDuration = position;
       notifyListeners();
-      if (currentDuration.inMilliseconds == totalDuration.inMilliseconds || (currentDuration.inMilliseconds / totalDuration.inMilliseconds == 1)) {
+      if (currentDuration.inMilliseconds == totalDuration.inMilliseconds || (currentDuration.inMilliseconds / totalDuration.inMilliseconds >= 1)) {
         stopMusic();
       }
-      print(currentDuration);
-      print(totalDuration);
-      print((currentDuration.inSeconds/totalDuration.inSeconds).toDouble());
-    });
+      // print(currentDuration.inMilliseconds);
+      // print(totalDuration.inMilliseconds);
+      // print((currentDuration.inSeconds/totalDuration.inSeconds).toDouble());
+    }, onDone: () {
+      stopMusic();
+    },);
   }
  
   Future<void> stopMusic() async {
     await _audioPlayer.stop();
+    // print("Stop");
     currentDuration = Duration.zero;
     isPlaying = false;
-    resume = true;
+    resume = false;
     notifyListeners();
   }
 
