@@ -46,6 +46,7 @@ class _VibeToSongState extends State<VibeToSong> {
   Widget build(BuildContext context) {
     var audioProvider = context.watch<AudioProvider>();
     int sec = widget.song.duration!;
+    int songCurrentDuration = audioProvider.currentDuration.inSeconds;
     int songDuration = Duration(milliseconds: sec).inSeconds;
      
     return Padding(
@@ -142,9 +143,9 @@ class _VibeToSongState extends State<VibeToSong> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
-                            "0:00",
-                            style: TextStyle(
+                          Text(
+                            "${(songCurrentDuration / 60).floor().toString()}:${(songCurrentDuration % 60).toString().padLeft(2, '0')}",
+                            style: const TextStyle(
                               fontFamily: 'Futura',
                             ),
                           ),

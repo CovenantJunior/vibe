@@ -31,7 +31,8 @@ class AudioProvider extends ChangeNotifier{
     stopMusic();
     setSongIndex(id);
     _audioPlayer.setReleaseMode(ReleaseMode.release);
-    totalDuration = Duration(microseconds: duration);
+    totalDuration = Duration(milliseconds: duration);
+    print(totalDuration);
     await _audioPlayer.play(UrlSource(uri));
     isPlaying = true;
     resume = false;
@@ -44,10 +45,12 @@ class AudioProvider extends ChangeNotifier{
     _audioPlayer.onPositionChanged.listen((Duration position) {
       currentDuration = position;
       notifyListeners();
-      if (currentDuration == totalDuration) {
+      if (currentDuration.inMilliseconds == totalDuration.inMilliseconds || (currentDuration.inMilliseconds / totalDuration.inMilliseconds == 1)) {
         stopMusic();
       }
-      print((currentDuration.inMilliseconds/totalDuration.inMilliseconds).toDouble());
+      print(currentDuration);
+      print(totalDuration);
+      print((currentDuration.inSeconds/totalDuration.inSeconds).toDouble());
     });
   }
  
