@@ -52,7 +52,6 @@ class AudioProvider extends ChangeNotifier{
   }
  
   Future<void> stopMusic() async {
-    print("Stop");
     await _audioPlayer.stop();
     currentDuration = Duration.zero;
     isPlaying = false;
@@ -68,7 +67,6 @@ class AudioProvider extends ChangeNotifier{
   }
 
   void pauseMusic(uri) async {
-    print("Pause");
     await _audioPlayer.pause();
     isPlaying = false;
     resume = true;
