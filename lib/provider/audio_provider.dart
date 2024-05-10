@@ -6,7 +6,11 @@ import 'package:flutter/foundation.dart';
 */
 class AudioProvider extends ChangeNotifier{
 
-  final AudioPlayer _audioPlayer = AudioPlayer();
+  final AudioPlayer _audioPlayer = AudioPlayer(
+    playerId: "0"
+  );
+
+  final playerState = PlayerState;
 
   int? playlistCount;
 
@@ -23,17 +27,32 @@ class AudioProvider extends ChangeNotifier{
   }
 
   
-  void playMusic(id, uri, duration) async {
+  Future<void> playMusic(id, uri, duration) async {
+    stopMusic();
     setSongIndex(id);
+    _audioPlayer.setReleaseMode(ReleaseMode.release);
+    totalDuration = Duration(microseconds: duration);
     await _audioPlayer.play(UrlSource(uri));
     _audioPlayer.onPlayerComplete.listen((event) {
-      _audioPlayer.stop();
+      print("Stop");
+      currentDuration = Duration.zero;
+      stopMusic();
+    });
+    _audioPlayer.onPositionChanged.listen((Duration position) {
+      currentDuration = position;
+      print((currentDuration.inSeconds/totalDuration.inSeconds).ceilToDouble());
     });
     isPlaying = true;
     resume = false;
     notifyListeners();
-
-    timer();
+  }
+ 
+  Future<void> stopMusic() async {
+    await _audioPlayer.stop();
+    currentDuration = Duration.zero;
+    isPlaying = false;
+    resume = true;
+    notifyListeners();
   }
 
   void resumeMusic() async {
@@ -50,21 +69,21 @@ class AudioProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  void nextMusic(id, uri) async {
+  void nextMusic(id, uri, duration) async {
     if (id < (playlistCount! - 1)) {
       songIndex = id;
       await _audioPlayer.stop();
-      await _audioPlayer.play(uri);
+      playMusic(id, uri, duration);
     } else {
       // Last song playing (if not shuffling)
     }
   }
 
-  void previousMusic(id, uri) async {
+  void previousMusic(id, uri, duration) async {
     if (id >= 0) {
       songIndex = id;
       await _audioPlayer.stop();
-      await _audioPlayer.play(uri);
+      playMusic(id, uri, duration);
     } else {
       // First song playing (if not shuffling)
     }
@@ -89,6 +108,11 @@ class AudioProvider extends ChangeNotifier{
 
   void setSongIndex (id) {
     songIndex = id;
+    notifyListeners();
+  }
+
+  void setTotalDuration(duration) {
+    totalDuration = duration;
     notifyListeners();
   }
 }

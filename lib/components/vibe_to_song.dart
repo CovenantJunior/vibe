@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -21,18 +19,34 @@ class VibeToSong extends StatefulWidget {
 
 class _VibeToSongState extends State<VibeToSong> {
   AudioProvider audioProvider = AudioProvider();
+  
+  late AudioPlayer player = AudioPlayer(
+    playerId: '0'
+  );
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Create the audio player.
+    player = AudioPlayer();
+
+    // Set the release mode to keep the source after playback has completed.
+    player.setReleaseMode(ReleaseMode.release);
+  }
+
+  @override
+  void dispose() {
+    // Release all sources and dispose the player.
+    player.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     int sec = widget.song.duration!;
     int songDuration = Duration(milliseconds: sec).inSeconds;
-     Duration currentDuration;
-     AudioPlayer audioPlayer = AudioPlayer();
-     audioPlayer.onPositionChanged.listen((Duration position) {
-      setState(() {
-        currentDuration = position;
-      });
-    });
      
     return Padding(
       padding: const EdgeInsets.all(10.0),
@@ -101,9 +115,9 @@ class _VibeToSongState extends State<VibeToSong> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Slider(
-                      min: 0,
+                      min: 0, 
                       max: 1,
-                      value: 0.5,
+                      value: audioProvider.totalDuration == Duration.zero ? 0 : (audioProvider.currentDuration.inSeconds/audioProvider.totalDuration.inSeconds).ceilToDouble(),
                       activeColor: const Color.fromARGB(255, 202, 202, 123),
                       thumbColor: const Color.fromARGB(255, 202, 202, 123),
                       onChanged: (value) {
@@ -145,7 +159,7 @@ class _VibeToSongState extends State<VibeToSong> {
                         children: [
                           IconButton(
                             onPressed: () {
-                              audioProvider.previousMusic(widget.song.id, widget.song.uri);
+                              audioProvider.previousMusic(widget.song.id, widget.song.uri, widget.song.duration);
                             },
                             icon: const Icon(
                               Icons.skip_previous_outlined,
@@ -185,7 +199,7 @@ class _VibeToSongState extends State<VibeToSong> {
                           ),
                           IconButton(
                             onPressed: () {
-                              audioProvider.nextMusic(widget.song.id, widget.song.uri);
+                              audioProvider.nextMusic(widget.song.id, widget.song.uri, widget.song.duration);
                             },
                             icon: const Icon(
                               Icons.skip_next_outlined,
