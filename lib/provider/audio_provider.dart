@@ -33,6 +33,9 @@ class AudioProvider extends ChangeNotifier{
     _audioPlayer.setReleaseMode(ReleaseMode.release);
     totalDuration = Duration(microseconds: duration);
     await _audioPlayer.play(UrlSource(uri));
+    isPlaying = true;
+    resume = false;
+    notifyListeners();
     _audioPlayer.onPlayerComplete.listen((event) {
       print("Stop");
       currentDuration = Duration.zero;
@@ -40,11 +43,12 @@ class AudioProvider extends ChangeNotifier{
     });
     _audioPlayer.onPositionChanged.listen((Duration position) {
       currentDuration = position;
-      print((currentDuration.inSeconds/totalDuration.inSeconds).ceilToDouble());
+      notifyListeners();
+      if (currentDuration == totalDuration) {
+        stopMusic();
+      }
+      print((currentDuration.inMilliseconds/totalDuration.inMilliseconds).toDouble());
     });
-    isPlaying = true;
-    resume = false;
-    notifyListeners();
   }
  
   Future<void> stopMusic() async {

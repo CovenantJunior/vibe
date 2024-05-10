@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:provider/provider.dart';
 import 'package:vibe/provider/audio_provider.dart';
 import 'package:vibe/components/vibe_cover.dart';
 
@@ -17,9 +18,7 @@ class VibeToSong extends StatefulWidget {
   State<VibeToSong> createState() => _VibeToSongState();
 }
 
-class _VibeToSongState extends State<VibeToSong> {
-  AudioProvider audioProvider = AudioProvider();
-  
+class _VibeToSongState extends State<VibeToSong> {  
   late AudioPlayer player = AudioPlayer(
     playerId: '0'
   );
@@ -45,6 +44,7 @@ class _VibeToSongState extends State<VibeToSong> {
 
   @override
   Widget build(BuildContext context) {
+    var audioProvider = context.watch<AudioProvider>();
     int sec = widget.song.duration!;
     int songDuration = Duration(milliseconds: sec).inSeconds;
      
@@ -117,7 +117,13 @@ class _VibeToSongState extends State<VibeToSong> {
                     Slider(
                       min: 0, 
                       max: 1,
-                      value: audioProvider.totalDuration == Duration.zero ? 0 : (audioProvider.currentDuration.inSeconds/audioProvider.totalDuration.inSeconds).ceilToDouble(),
+                      value: audioProvider.totalDuration.inMilliseconds == 0
+                        ? 0.0 // Return 0.0 if total duration is zero
+                        : (audioProvider.currentDuration.inMilliseconds /
+                                audioProvider.totalDuration.inMilliseconds)
+                            .clamp(0.0,
+                                1.0), // Clamp the value between 0.0 and 1.0
+
                       activeColor: const Color.fromARGB(255, 202, 202, 123),
                       thumbColor: const Color.fromARGB(255, 202, 202, 123),
                       onChanged: (value) {
