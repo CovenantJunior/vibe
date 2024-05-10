@@ -2,6 +2,8 @@
     package="com.teapotlab.vibe">
     
     <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    
     <!-- Android 12 or below  -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -14,7 +16,9 @@
     <application
         android:label="VIbe"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config">
         <activity
             android:name=".MainActivity"
             android:exported="true"

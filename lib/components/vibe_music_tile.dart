@@ -1,4 +1,5 @@
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -109,14 +110,16 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
                           ),
                         ),
                         onTap: () {
-                          // print(song.uri!);
-                          _audioPlayer.setReleaseMode(ReleaseMode.release);
+                          print(song.uri!);
+                          _audioPlayer.setUrl(song.uri!);
+                          _audioPlayer.play();
+                          /* _audioPlayer.setReleaseMode(ReleaseMode.release);
                           audioProvider.currentDuration = Duration.zero;
                           audioProvider.totalDuration = Duration(microseconds: song.duration!);
                           audioProvider.playMusic(song.id, song.uri, song.duration);
                           audioProvider.isPlaying = true;
                           audioProvider.resume = false;
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song))); */
                         },
                       ).animate().fadeIn().scale(
                         duration: const Duration(milliseconds: 300)
