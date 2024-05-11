@@ -156,20 +156,9 @@ class _VibeToSongState extends State<VibeToSong> {
                               size: 30,
                               color: Color.fromARGB(255, 202, 202, 123),
                             )
-                          ) : audioProvider.resume == false ? IconButton(
-                            onPressed: (){
-                              audioProvider.playMusic(widget.song.id, widget.song.uri, widget.song.duration);
-                            },
-                            icon: const Icon(
-                              Icons.play_arrow_outlined,
-                              size: 30,
-                              color: Color.fromARGB(255, 202, 202, 123),
-                            )
                           ) : IconButton(
                             onPressed: (){
-                              audioProvider.resumeMusic();
-                              audioProvider.isPlaying = true;
-                              audioProvider.resume = false;
+                              audioProvider.playMusic(widget.song.id, widget.song.uri, widget.song.duration);
                             },
                             icon: const Icon(
                               Icons.play_arrow_outlined,

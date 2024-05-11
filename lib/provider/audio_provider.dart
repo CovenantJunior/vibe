@@ -26,8 +26,8 @@ class AudioProvider extends ChangeNotifier{
     _audioPlayer.stop();
     setSongIndex(id);
     totalDuration = Duration(milliseconds: duration);
-    await _audioPlayer.setUrl(uri);
-    await _audioPlayer.play();
+    await _audioPlayer.seek(currentDuration);
+    _audioPlayer.play();
     isPlaying = true;
     resume = false;
     notifyListeners();
@@ -35,10 +35,13 @@ class AudioProvider extends ChangeNotifier{
       if (state.playing) {
         _audioPlayer.positionStream.listen((event) {
           currentDuration = _audioPlayer.position;
+          if (currentDuration == totalDuration) {
+            currentDuration = Duration.zero;
+            isPlaying = false;
+          }
           notifyListeners();
         });
       } else {
-        isPlaying = false;
         /* switch (state.processingState) {
           /* case ProcessingState.idle: ...
           case ProcessingState.loading: ...
