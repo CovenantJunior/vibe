@@ -31,7 +31,7 @@ class _VibeToSongState extends State<VibeToSong> {
       child: Column(
             children: [
               Expanded(
-                flex: 4,
+                flex: 3,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 0),
                   child: Column(

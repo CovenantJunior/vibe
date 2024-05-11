@@ -25,8 +25,7 @@ class AudioProvider extends ChangeNotifier{
   Future<void> playMusic(id, uri, duration) async {
     _audioPlayer.stop();
     setSongIndex(id);
-    totalDuration = _audioPlayer.duration!;
-    currentDuration = _audioPlayer.position;
+    totalDuration = Duration(milliseconds: duration);
     await _audioPlayer.setUrl(uri);
     await _audioPlayer.play();
     isPlaying = true;
@@ -39,14 +38,15 @@ class AudioProvider extends ChangeNotifier{
           notifyListeners();
         });
       } else {
-        switch (state.processingState) {
+        isPlaying = false;
+        /* switch (state.processingState) {
           /* case ProcessingState.idle: ...
           case ProcessingState.loading: ...
           case ProcessingState.buffering: ...
           case ProcessingState.ready: ... */
           case ProcessingState.completed: stopMusic();
-          default: null;
-        }
+          default: stopMusic();
+        } */
       }
     });
   }

@@ -109,13 +109,17 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
                           ),
                         ),
                         onTap: () {
-                          _audioPlayer.setUrl(song.uri!);
-                          audioProvider.currentDuration = Duration.zero;
-                          audioProvider.totalDuration = Duration(microseconds: song.duration!);
-                          audioProvider.playMusic(song.id, song.uri, song.duration);
-                          audioProvider.isPlaying = true;
-                          audioProvider.resume = false;
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
+                          if (audioProvider.songIndex == song.id) {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
+                          } else {
+                            _audioPlayer.setUrl(song.uri!);
+                            audioProvider.currentDuration = Duration.zero;
+                            audioProvider.totalDuration = Duration(microseconds: song.duration!);
+                            audioProvider.playMusic(song.id, song.uri, song.duration);
+                            audioProvider.isPlaying = true;
+                            audioProvider.resume = false;
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
+                          }
                         },
                       ).animate().fadeIn().scale(
                         duration: const Duration(milliseconds: 300)
