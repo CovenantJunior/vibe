@@ -38,6 +38,12 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
     });
   }
 
+  void update() {
+      setState(() {
+        
+      });
+    }
+
   @override
   void initState() {
     super.initState();
@@ -112,7 +118,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
                           } else {
                             audioProvider.currentDuration = Duration.zero;
                             audioProvider.totalDuration = Duration(microseconds: song.duration!);
-                            audioProvider.playMusic(song.id, song.uri, song.duration);
+                            audioProvider.playMusic(song.id, song.uri, song.duration, update);
                             audioProvider.isPlaying = true;
                             audioProvider.resume = false;
                             Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));

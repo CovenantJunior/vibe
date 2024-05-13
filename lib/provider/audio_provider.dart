@@ -25,11 +25,12 @@ class AudioProvider extends ChangeNotifier{
 
   bool paused = false;
   
-  Future<void> playMusic(id, uri, duration) async {
+  Future<void> playMusic(id, uri, duration, update) async {
     _audioPlayer.stop();
     setSongIndex(id);
     totalDuration = Duration(milliseconds: duration);
     if (paused != true) {
+      currentDuration = Duration.zero;
       _audioPlayer.setUrl(uri);
     }
     await _audioPlayer.seek(currentDuration);
@@ -42,11 +43,12 @@ class AudioProvider extends ChangeNotifier{
       if (state.playing) {
         _audioPlayer.positionStream.listen((event) {
           currentDuration = _audioPlayer.position;
-          if (currentDuration == totalDuration) {
+          if (currentDuration >= totalDuration!) {
             currentDuration = Duration.zero;
             stopMusic();
           }
           notifyListeners();
+          update;
         });
       } else {
         /* switch (state.processingState) {
@@ -84,19 +86,19 @@ class AudioProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  void nextMusic(id, uri, duration) async {
+  void nextMusic(id, uri, duration, update) async {
     if (id < (playlistCount! - 1)) {
       songIndex = id;
-      playMusic(id, uri, duration);
+      playMusic(id, uri, duration, update);
     } else {
       // Last song playing (if not shuffling)
     }
   }
 
-  void previousMusic(id, uri, duration) async {    
+  void previousMusic(id, uri, duration, update) async {    
     if (id >= 0) {
       songIndex = id;
-      playMusic(id, uri, duration);
+      playMusic(id, uri, duration, update);
     } else {
       // First song playing (if not shuffling)
     }

@@ -21,10 +21,16 @@ class _VibeToSongState extends State<VibeToSong> {
 
   @override
   Widget build(BuildContext context) {
-    var audioProvider = context.watch<AudioProvider>();
+    var audioProvider = Provider.of<AudioProvider>(context, listen: true);
     int sec = widget.song.duration!;
     int songCurrentDuration = audioProvider.currentDuration.inSeconds;
     int songDuration = Duration(milliseconds: sec).inSeconds;
+
+    void update() {
+      setState(() {
+        
+      });
+    }
      
     return Padding(
       padding: const EdgeInsets.all(10.0),
@@ -136,7 +142,7 @@ class _VibeToSongState extends State<VibeToSong> {
                         children: [
                           IconButton(
                             onPressed: () {
-                              audioProvider.previousMusic(widget.song.id, widget.song.uri, widget.song.duration);
+                              audioProvider.previousMusic(widget.song.id, widget.song.uri, widget.song.duration, update);
                             },
                             icon: const Icon(
                               Icons.skip_previous_outlined,
@@ -155,7 +161,7 @@ class _VibeToSongState extends State<VibeToSong> {
                             )
                           ) : IconButton(
                             onPressed: (){
-                              audioProvider.playMusic(widget.song.id, widget.song.uri, widget.song.duration);
+                              audioProvider.playMusic(widget.song.id, widget.song.uri, widget.song.duration, update);
                             },
                             icon: const Icon(
                               Icons.play_arrow_outlined,
@@ -165,7 +171,7 @@ class _VibeToSongState extends State<VibeToSong> {
                           ),
                           IconButton(
                             onPressed: () {
-                              audioProvider.nextMusic(widget.song.id, widget.song.uri, widget.song.duration);
+                              audioProvider.nextMusic(widget.song.id, widget.song.uri, widget.song.duration, update);
                             },
                             icon: const Icon(
                               Icons.skip_next_outlined,
