@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -16,20 +17,26 @@ class AudioProvider extends ChangeNotifier{
 
   int? songIndex;
   Duration currentDuration = Duration.zero;
-  Duration totalDuration = Duration.zero;
+  Duration? totalDuration;
   
   bool isPlaying = false;
 
   bool resume = false;
+
+  bool paused = false;
   
   Future<void> playMusic(id, uri, duration) async {
     _audioPlayer.stop();
     setSongIndex(id);
     totalDuration = Duration(milliseconds: duration);
+    if (paused != true) {
+      _audioPlayer.setUrl(uri);
+    }
     await _audioPlayer.seek(currentDuration);
     _audioPlayer.play();
     isPlaying = true;
     resume = false;
+    paused = false;
     notifyListeners();
     _audioPlayer.playerStateStream.listen((state) {
       if (state.playing) {
@@ -37,7 +44,7 @@ class AudioProvider extends ChangeNotifier{
           currentDuration = _audioPlayer.position;
           if (currentDuration == totalDuration) {
             currentDuration = Duration.zero;
-            isPlaying = false;
+            stopMusic();
           }
           notifyListeners();
         });
@@ -73,6 +80,7 @@ class AudioProvider extends ChangeNotifier{
     await _audioPlayer.pause();
     isPlaying = false;
     resume = true;
+    paused = true;
     notifyListeners();
   }
 

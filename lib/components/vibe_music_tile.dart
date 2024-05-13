@@ -1,4 +1,3 @@
-import 'package:just_audio/just_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -16,7 +15,6 @@ class VibeMusicTile extends StatefulWidget {
 
 class _VibeMusicTileState extends State<VibeMusicTile> {
   final OnAudioQuery audioQuery = OnAudioQuery();
-  final AudioPlayer _audioPlayer = AudioPlayer();
   Future<List<SongModel>> getAllAudioFiles() async {
     if (await Permission.storage.request().isGranted) {
       return await audioQuery.querySongs(
@@ -112,7 +110,6 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
                           if (audioProvider.songIndex == song.id) {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
                           } else {
-                            _audioPlayer.setUrl(song.uri!);
                             audioProvider.currentDuration = Duration.zero;
                             audioProvider.totalDuration = Duration(microseconds: song.duration!);
                             audioProvider.playMusic(song.id, song.uri, song.duration);

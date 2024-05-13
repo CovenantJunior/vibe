@@ -95,20 +95,17 @@ class _VibeToSongState extends State<VibeToSong> {
                     Slider(
                       min: 0, 
                       max: 1,
-                      value: (audioProvider.currentDuration.inMilliseconds /
-                                audioProvider.totalDuration.inMilliseconds).clamp(0.0,1.0), // Clamp the value between 0.0 and 1.0
-
+                      value: (audioProvider.currentDuration.inMilliseconds / audioProvider.totalDuration!.inMilliseconds).clamp(0.0,1.0), // Clamp the value between 0.0 and 1.0
                       activeColor: const Color.fromARGB(255, 202, 202, 123),
                       thumbColor: const Color.fromARGB(255, 202, 202, 123),
                       onChanged: (value) {
-
-                      },
-                      onChangeStart: (value) {
-                        value = audioProvider.currentDuration.inSeconds/audioProvider.totalDuration.inSeconds;
+                        audioProvider.seekDuration(audioProvider.currentDuration);
                       },
                       onChangeEnd: (value) {
-                        audioProvider.seekDuration(songDuration);
-                      }
+                        audioProvider.currentDuration = Duration(milliseconds: (audioProvider.totalDuration!.inMilliseconds * value).round());
+                        audioProvider.seekDuration(audioProvider.currentDuration);
+                        print(audioProvider.currentDuration);
+                      },
                     ),
                     
                     Padding(
