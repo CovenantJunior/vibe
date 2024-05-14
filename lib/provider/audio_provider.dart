@@ -17,7 +17,7 @@ class AudioProvider extends ChangeNotifier{
 
   int? songIndex;
   Duration currentDuration = Duration.zero;
-  Duration? totalDuration;
+  Duration totalDuration = Duration.zero;
   
   bool isPlaying = false;
 
@@ -38,16 +38,20 @@ class AudioProvider extends ChangeNotifier{
     isPlaying = true;
     resume = false;
     paused = false;
-    notifyListeners();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      notifyListeners();
+    });
     _audioPlayer.playerStateStream.listen((state) {
       if (state.playing) {
         _audioPlayer.positionStream.listen((event) {
           currentDuration = _audioPlayer.position;
-          if (currentDuration >= totalDuration!) {
+          if (currentDuration >= totalDuration) {
             currentDuration = Duration.zero;
             stopMusic();
           }
-          notifyListeners();
+          WidgetsBinding.instance.addPostFrameCallback((_){
+            notifyListeners();
+          });
           update;
         });
       } else {
@@ -68,14 +72,18 @@ class AudioProvider extends ChangeNotifier{
     currentDuration = Duration.zero;
     isPlaying = false;
     resume = false;
-    notifyListeners();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      notifyListeners();
+    });
   }
 
   void resumeMusic() async {
     await _audioPlayer.play();
     isPlaying = true;
     resume = false;
-    notifyListeners();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      notifyListeners();
+    });
   }
 
   void pauseMusic(uri) async {
@@ -83,7 +91,9 @@ class AudioProvider extends ChangeNotifier{
     isPlaying = false;
     resume = true;
     paused = true;
-    notifyListeners();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      notifyListeners();
+    });
   }
 
   void nextMusic(id, uri, duration, update) async {
@@ -118,11 +128,15 @@ class AudioProvider extends ChangeNotifier{
 
   void setPlaylistCount(count) {
     playlistCount = count;
-    notifyListeners();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      notifyListeners();
+    });
   }
 
   void setSongIndex (id) {
     songIndex = id;
-    notifyListeners();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      notifyListeners();
+    });
   }
 }

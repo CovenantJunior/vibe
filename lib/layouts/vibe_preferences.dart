@@ -23,7 +23,7 @@ class _VibePreferenceState extends State<VibePreference> {
   }
 
   Future<void> readPreference () async {
-    Provider.of<VibeDatabase>(context, listen: false).fetchPreferences();
+    Provider.of<VibeDatabase>(context, listen: true).fetchPreferences();
   }
 
   void notifyInfo() {

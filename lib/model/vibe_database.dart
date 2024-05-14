@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:vibe/model/vibe_preferences.dart';
@@ -28,7 +29,9 @@ class VibeDatabase extends ChangeNotifier {
         ..vibration = true;
       await isar.writeTxn(() => isar.vibePreferences.put(newPreference));
       preferences = isar.vibePreferences.where().findAllSync();
-      notifyListeners();
+      WidgetsBinding.instance.addPostFrameCallback((_){
+        notifyListeners();
+      });
     } else if (currentPreferences.length > 1) {
       currentPreferences.last.clear();
       // await isar.writeTxn(() => isar.vibePreferences.clear());
@@ -59,7 +62,9 @@ class VibeDatabase extends ChangeNotifier {
       preferences.addAll(currentPreferences);
       isDark = preferences.first.darkMode;
       // print(currentPreferences.length);
-      notifyListeners();
+      WidgetsBinding.instance.addPostFrameCallback((_){
+        notifyListeners();
+      });
     }
   }
 
