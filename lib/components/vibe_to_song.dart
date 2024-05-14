@@ -105,12 +105,12 @@ class _VibeToSongState extends State<VibeToSong> {
                       activeColor: const Color.fromARGB(255, 202, 202, 123),
                       thumbColor: const Color.fromARGB(255, 202, 202, 123),
                       onChanged: (value) {
+                        audioProvider.currentDuration = Duration(milliseconds: (audioProvider.totalDuration.inMilliseconds * value).round());
                         audioProvider.seekDuration(audioProvider.currentDuration);
                       },
                       onChangeEnd: (value) {
                         audioProvider.currentDuration = Duration(milliseconds: (audioProvider.totalDuration.inMilliseconds * value).round());
                         audioProvider.seekDuration(audioProvider.currentDuration);
-                        print(audioProvider.currentDuration);
                       },
                     ),
                     

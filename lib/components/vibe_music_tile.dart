@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:lottie/lottie.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +14,11 @@ class VibeMusicTile extends StatefulWidget {
   State<VibeMusicTile> createState() => _VibeMusicTileState();
 }
 
-class _VibeMusicTileState extends State<VibeMusicTile> {
+class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProviderStateMixin {
+
+  late AnimationController _playChart;
+  late Duration playDuration;
+
   final OnAudioQuery audioQuery = OnAudioQuery();
   Future<List<SongModel>> getAllAudioFiles() async {
     if (await Permission.storage.request().isGranted) {
@@ -49,6 +54,17 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
     super.initState();
     // Get all audio files on the device
     _audioFilesFuture = getAllAudioFiles();
+    _playChart = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 5)
+    );
+    _playChart.loop();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _playChart.dispose();
   }
 
   Future<void> refreshAudioFiles() async {
@@ -88,7 +104,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
                     child: Container(
                       child: ListTile(
                         dense: true,
-                        leading: QueryArtworkWidget(
+                        leading: audioProvider.songIndex != song.id ? QueryArtworkWidget(
                           artworkWidth: 30,
                           artworkHeight: 30,
                           id: song.id,
@@ -99,6 +115,12 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
                             Icons.music_note_outlined,
                             size: 30,
                           ),
+                        ) : Lottie.network(
+                          "https://lottie.host/27803cb0-f081-44fe-8e8f-7a34824d2c80/CI971yYUo2.json",
+                          controller: _playChart,
+                          repeat: true,
+                          height: 40,
+                          width: 40
                         ),
                         title: Text(
                           song.title,
@@ -121,6 +143,9 @@ class _VibeMusicTileState extends State<VibeMusicTile> {
                             audioProvider.playMusic(song.id, song.uri, song.duration, update);
                             audioProvider.isPlaying = true;
                             audioProvider.resume = false;
+                            setState(() {
+                              playDuration = Duration(milliseconds: song.duration!);
+                            });
                             Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
                           }
                         },
