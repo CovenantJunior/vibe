@@ -56,7 +56,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
     _audioFilesFuture = getAllAudioFiles();
     _playChart = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 5)
+      duration: const Duration(days: 1)
     );
     _playChart.loop();
   }
@@ -115,8 +115,8 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
                             Icons.music_note_outlined,
                             size: 30,
                           ),
-                        ) : Lottie.network(
-                          "https://lottie.host/27803cb0-f081-44fe-8e8f-7a34824d2c80/CI971yYUo2.json",
+                        ) : Lottie.asset(
+                          "animations/1715719604390.json",
                           controller: _playChart,
                           repeat: true,
                           height: 40,
