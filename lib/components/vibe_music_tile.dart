@@ -14,7 +14,7 @@ class VibeMusicTile extends StatefulWidget {
   State<VibeMusicTile> createState() => _VibeMusicTileState();
 }
 
-class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProviderStateMixin {
+class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin  {
 
   late AnimationController _playChart;
   late Duration playDuration;
@@ -58,8 +58,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
       vsync: this,
       duration: const Duration(seconds: 2)
     );
-    _playChart.forward();
-    _playChart.loop();
+    _playChart.repeat();
   }
 
   @override
@@ -80,6 +79,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
 
   @override
   Widget build(BuildContext context) {
+    super.build(context); // Required when using AutomaticKeepAliveClientMixin
     _playChart.loop();
     var audioProvider = context.watch<AudioProvider>();
     return Scaffold(
@@ -118,7 +118,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
                             size: 30,
                           ),
                         ) : Lottie.asset(
-                          "assets/animations/1715717315236.json",
+                          "assets/animations/1715719604390.json",
                           controller: _playChart,
                           repeat: true,
                           height: 40,
@@ -144,12 +144,10 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
                             audioProvider.currentDuration = Duration.zero;
                             audioProvider.totalDuration = Duration(microseconds: song.duration!);
                             audioProvider.playMusic(song.id, song.uri, song.duration, update);
-                            audioProvider.isPlaying = true;
-                            audioProvider.resume = false;
                             setState(() {
                               playDuration = Duration(milliseconds: song.duration!);
                             });
-                            // Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
                           }
                         },
                       ).animate().fadeIn().scale(
@@ -165,4 +163,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

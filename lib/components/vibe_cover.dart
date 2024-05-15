@@ -17,29 +17,7 @@ class _VibeCoverState extends State<VibeCover> {
   @override
   Widget build(BuildContext context) {
     context.read<VibeDatabase>().fetchPreferences();
-    return context.read<VibeDatabase>().preferences.first.darkMode == false ? Container(
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(10),
-          bottomRight: Radius.circular(10),
-          topLeft: Radius.circular(10),
-          bottomLeft: Radius.circular(10)
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade500,
-            blurRadius: 10,
-            offset: const Offset(4, 4)
-          ),
-          const BoxShadow(
-            color: Colors.white,
-            blurRadius: 10,
-            offset: Offset(-4, -4)
-          )
-        ]
-      ),
-      child: widget.child,
-    ) : Container(
+    return Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(10),

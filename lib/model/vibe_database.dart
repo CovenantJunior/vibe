@@ -24,7 +24,6 @@ class VibeDatabase extends ChangeNotifier {
     List currentPreferences = isar.vibePreferences.where().findAllSync();
     if (currentPreferences.isEmpty) {
       final newPreference = VibePreferences()
-        ..darkMode = false
         ..notification = true
         ..vibration = true;
       await isar.writeTxn(() => isar.vibePreferences.put(newPreference));
@@ -39,20 +38,6 @@ class VibeDatabase extends ChangeNotifier {
     }
   }
 
-  void themePreference() async {
-    final currentPreference = isar.vibePreferences.where().findAllSync();
-    if (currentPreference.isEmpty) {
-      initPreference();
-      isDark = currentPreference.first.darkMode!;
-    } else if (currentPreference.length > 1) {
-      // await isar.writeTxn(() => isar.vibePreferences.clear());
-      initPreference();
-    } else {
-      // print("Preference length is ${currentPreference.length}");
-      isDark = currentPreference.first.darkMode!;
-    }
-  }
-
   void fetchPreferences() async {
     List currentPreferences = isar.vibePreferences.where().findAllSync();
     if (currentPreferences.isEmpty) {
@@ -60,25 +45,10 @@ class VibeDatabase extends ChangeNotifier {
     } else {
       preferences.clear();
       preferences.addAll(currentPreferences);
-      isDark = preferences.first.darkMode;
       // print(currentPreferences.length);
       WidgetsBinding.instance.addPostFrameCallback((_){
         notifyListeners();
       });
-    }
-  }
-
-  void toggleTheme(id) async {
-    var existingPreference = await isar.vibePreferences.get(id);
-    // print(existingPreference?.darkMode);
-    if (existingPreference != null) {
-      existingPreference.darkMode == false ?  existingPreference.darkMode = true : existingPreference.darkMode = false;
-
-      await isar.writeTxn(() => isar.vibePreferences.put(existingPreference));
-      preferences.first.darkMode = existingPreference.darkMode;
-      isDark = existingPreference.darkMode;
-
-      fetchPreferences();
     }
   }
 

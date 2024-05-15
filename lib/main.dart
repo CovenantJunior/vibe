@@ -34,10 +34,9 @@ class _VibeState extends State<Vibe> {
   
   @override
   Widget build(BuildContext context) {
-    context.read<VibeDatabase>().themePreference();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: context.watch<VibeDatabase>().isDark == true ? ThemeData.dark() : ThemeData.light(),
+      theme: ThemeData.dark(),
       routes: {
         '/home': (context) => const HomePage(),
         '/preferences': (context) => const VibePreference(),

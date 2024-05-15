@@ -12,7 +12,6 @@ class VibePreference extends StatefulWidget {
 
 class _VibePreferenceState extends State<VibePreference> {
   int? id;
-  late bool darkMode;
   late bool notification;
   late bool vibration;
 
@@ -23,7 +22,7 @@ class _VibePreferenceState extends State<VibePreference> {
   }
 
   Future<void> readPreference () async {
-    Provider.of<VibeDatabase>(context, listen: true).fetchPreferences();
+    Provider.of<VibeDatabase>(context, listen: false).fetchPreferences();
   }
 
   void notifyInfo() {
@@ -49,96 +48,6 @@ class _VibePreferenceState extends State<VibePreference> {
     );
   }
 
-  void clipBoardInfo() {
-    showDialog(
-      context: context,
-      builder: (context) => const AlertDialog(
-        title: Text(
-          "Clipboard",
-          style: TextStyle(
-            fontFamily: "Futura",
-            fontWeight: FontWeight.w500,
-            fontSize: 20
-          ),
-        ),
-        content: Text(
-          "Read immediate Clipboard data for a quick task creation",
-          style: TextStyle(
-            fontFamily: "Futura",
-            fontWeight: FontWeight.w500,
-          )
-        ),
-      ),
-    );
-  }
-
-  void ttsInfo() {
-    showDialog(
-      context: context,
-      builder: (context) => const AlertDialog(
-        title: Text(
-          "Speech to Text",
-          style: TextStyle(
-            fontFamily: "Futura",
-            fontWeight: FontWeight.w500,
-            fontSize: 20
-          ),
-        ),
-        content: Text(
-          "Fill in task description with your voice",
-          style: TextStyle(
-            fontFamily: "Futura",
-            fontWeight: FontWeight.w500,
-          )
-        ),
-      ),
-    );
-  }
-
-  void dismissInfo() {
-    showDialog(
-      context: context,
-      builder: (context) => const AlertDialog(
-        title: Text(
-          "Swipe Dismiss",
-          style: TextStyle(
-            fontFamily: "Futura",
-            fontWeight: FontWeight.w500,
-            fontSize: 20
-          ),
-        ),
-        content: Text(
-            "Swiping to dismiss results in plans being discarded.",
-            style: TextStyle(
-              fontFamily: "Futura",
-              fontWeight: FontWeight.w500,
-            )),
-      ),
-    );
-  }
-
-  void bulkTrashInfo() {
-    showDialog(
-      context: context,
-      builder: (context) => const AlertDialog(
-        title: Text(
-          "Bulk Trash",
-          style: TextStyle(
-            fontFamily: "Futura",
-            fontWeight: FontWeight.w500,
-            fontSize: 20
-          ),
-        ),
-        content: Text(
-            "This option helps you clear all tasks/plans in one tap",
-            style: TextStyle(
-              fontFamily: "Futura",
-              fontWeight: FontWeight.w500,
-            )),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     List preferences = context.watch<VibeDatabase>().preferences;
@@ -146,7 +55,6 @@ class _VibePreferenceState extends State<VibePreference> {
     for (var preference in preferences) {
       setState(() {
         id = preference.id;
-        darkMode = preference.darkMode;
         notification = preference.notification;
         vibration = preference.vibration;
       });
@@ -176,13 +84,13 @@ class _VibePreferenceState extends State<VibePreference> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
+                    const Row(
                       children: [
-                        darkMode == true ? const Icon(Icons.dark_mode_outlined) : const Icon(Icons.light_mode_outlined),
-                        const SizedBox(width: 20),
+                        Icon(Icons.dark_mode_outlined),
+                        SizedBox(width: 20),
                         Text(
-                          darkMode == true ? 'Dark Mode' : 'Light Mode',
-                          style: const TextStyle(
+                          'Dark Mode',
+                          style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 12,
                             fontFamily: "Futura"
@@ -193,9 +101,9 @@ class _VibePreferenceState extends State<VibePreference> {
                     Transform.scale(
                       scale: .7,
                       child: Switch(
-                        value: darkMode,
+                        value: true,
                         onChanged: (value) {
-                          Provider.of<VibeDatabase>(context, listen: false).toggleTheme(id);
+                          
                         }
                       ),
                     )

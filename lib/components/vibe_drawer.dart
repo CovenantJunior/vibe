@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vibe/components/vibe_drawer_tile.dart';
 import 'package:vibe/layouts/vibe_preferences.dart';
+import 'package:vibe/theme_skins/skins.dart';
 
 class VibeDrawer extends StatefulWidget {
   const VibeDrawer({super.key});
@@ -14,14 +15,11 @@ class _VibeDrawerState extends State<VibeDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(106, 13, 32, 96),
-              Color.fromARGB(121, 137, 27, 27),
-            ],
+            colors: coolGradients[8],
           ),
         ),
         child: SingleChildScrollView(
