@@ -118,7 +118,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
                             size: 30,
                           ),
                         ) : Lottie.asset(
-                          "assets/animations/1715719604390.json",
+                          "assets/animations/1715717315236.json",
                           controller: _playChart,
                           repeat: true,
                           height: 40,
