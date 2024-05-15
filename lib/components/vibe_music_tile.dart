@@ -56,8 +56,9 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
     _audioFilesFuture = getAllAudioFiles();
     _playChart = AnimationController(
       vsync: this,
-      duration: const Duration(days: 1)
+      duration: const Duration(seconds: 2)
     );
+    _playChart.forward();
     _playChart.loop();
   }
 
@@ -79,6 +80,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
 
   @override
   Widget build(BuildContext context) {
+    _playChart.loop();
     var audioProvider = context.watch<AudioProvider>();
     return Scaffold(
       body: RefreshIndicator(
@@ -100,7 +102,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
                   audioProvider.setPlaylistCount(audioFiles.length);
                   SongModel song = audioFiles[index];
                   return Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
                     child: Container(
                       child: ListTile(
                         dense: true,
@@ -116,7 +118,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
                             size: 30,
                           ),
                         ) : Lottie.asset(
-                          "animations/1715719604390.json",
+                          "assets/animations/1715719604390.json",
                           controller: _playChart,
                           repeat: true,
                           height: 40,
@@ -135,6 +137,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
                           ),
                         ),
                         onTap: () {
+                          _playChart.forward();
                           if (audioProvider.songIndex == song.id) {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
                           } else {
@@ -146,7 +149,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
                             setState(() {
                               playDuration = Duration(milliseconds: song.duration!);
                             });
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
+                            // Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
                           }
                         },
                       ).animate().fadeIn().scale(

@@ -80,6 +80,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
     - assets/animations/1715719515704.json
     - assets/animations/1715719604390.json
+    - assets/animations/1715717315236.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
