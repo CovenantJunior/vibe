@@ -56,9 +56,9 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
     _audioFilesFuture = getAllAudioFiles();
     _playChart = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2)
+      duration: const Duration(seconds: 5)
     );
-    _playChart.repeat();
+    // _playChart.repeat();
   }
 
   @override
@@ -68,6 +68,9 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
   }
 
   Future<void> refreshAudioFiles() async {
+    // Freeze animations
+    _playChart.stop();
+
     // Fetch new data
     _audioFilesFuture = getAllAudioFiles();
 
@@ -75,12 +78,14 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
     setState(() {
       // The state is updated to reflect the new data
     });
+
+  // Continue animation
+    _playChart.repeat();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context); // Required when using AutomaticKeepAliveClientMixin
-    _playChart.loop();
     var audioProvider = context.watch<AudioProvider>();
     return Scaffold(
       body: RefreshIndicator(
@@ -106,23 +111,34 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
                     child: Container(
                       child: ListTile(
                         dense: true,
-                        leading: audioProvider.songIndex != song.id ? QueryArtworkWidget(
-                          artworkWidth: 30,
-                          artworkHeight: 30,
-                          id: song.id,
-                          quality: 100,
-                          artworkQuality: FilterQuality.high,
-                          type: ArtworkType.AUDIO,
-                          nullArtworkWidget: const Icon(
-                            Icons.music_note_outlined,
-                            size: 30,
+                        leading: audioProvider.songIndex != song.id ? SizedBox(
+                          width: 30,
+                          child: QueryArtworkWidget(
+                            artworkWidth: 30,
+                            artworkHeight: 30,
+                            id: song.id,
+                            quality: 100,
+                            artworkQuality: FilterQuality.high,
+                            format: ArtworkFormat.PNG,
+                            type: ArtworkType.AUDIO,
+                            nullArtworkWidget: const SizedBox(
+                              width: 30,
+                              child: Icon(
+                                Icons.music_note_outlined,
+                                size: 25,
+                              ),
+                            ),
                           ),
-                        ) : Lottie.asset(
-                          "assets/animations/1715719604390.json",
-                          controller: _playChart,
-                          repeat: true,
-                          height: 40,
-                          width: 40
+                        ) : SizedBox(
+                          width: 30,
+                          child: Lottie.asset(
+                            "assets/animations/1715719604390.json",
+                            controller: _playChart,
+                            repeat: true,
+                            height: 100,
+                            width: 100,
+                            frameRate: FrameRate.max
+                          ),
                         ),
                         title: Text(
                           song.title,
@@ -137,13 +153,15 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
                           ),
                         ),
                         onTap: () {
-                          _playChart.forward();
+                          // _playChart.repeat();
                           if (audioProvider.songIndex == song.id) {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
                           } else {
                             audioProvider.currentDuration = Duration.zero;
                             audioProvider.totalDuration = Duration(microseconds: song.duration!);
                             audioProvider.playMusic(song.id, song.uri, song.duration, update);
+                            audioProvider.isPlaying = true;
+                            audioProvider.resume = false;
                             setState(() {
                               playDuration = Duration(milliseconds: song.duration!);
                             });
