@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_close_app/flutter_close_app.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 import 'package:vibe/components/vibe_bottom_sheet.dart';
 import 'package:vibe/components/vibe_drawer.dart';
+import 'package:vibe/provider/audio_provider.dart';
 import 'package:vibe/tabs/albums.dart';
 import 'package:vibe/tabs/apple_music.dart';
 import 'package:vibe/tabs/artists.dart';
@@ -43,6 +45,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
+    var audioProvider = context.watch<AudioProvider>();
     return Scaffold(
       appBar: AppBar(
         title: const Row(
@@ -168,7 +171,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           ),
         ]
       ),
-      bottomSheet: const VibeBottomSheet()
+      bottomSheet: audioProvider.isAlive ? const VibeBottomSheet() : null
     );
   }
 }

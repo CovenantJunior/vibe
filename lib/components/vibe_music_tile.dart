@@ -44,10 +44,10 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
   }
 
   void update() {
-      setState(() {
-        
-      });
-    }
+    setState(() {
+      
+    });
+  }
 
   @override
   void initState() {
@@ -58,7 +58,6 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
       vsync: this,
       duration: const Duration(seconds: 5)
     );
-    // _playChart.repeat();
   }
 
   @override
@@ -87,6 +86,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
   Widget build(BuildContext context) {
     super.build(context); // Required when using AutomaticKeepAliveClientMixin
     var audioProvider = context.watch<AudioProvider>();
+    audioProvider.isPlaying ? _playChart.repeat() : _playChart.reset();
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () => refreshAudioFiles(),
@@ -134,9 +134,6 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
                           child: Lottie.asset(
                             "assets/animations/1715719604390.json",
                             controller: _playChart,
-                            repeat: true,
-                            height: 100,
-                            width: 100,
                             frameRate: FrameRate.max
                           ),
                         ),
@@ -153,13 +150,15 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
                           ),
                         ),
                         onTap: () {
-                          // _playChart.repeat();
                           if (audioProvider.songIndex == song.id) {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
                           } else {
                             audioProvider.currentDuration = Duration.zero;
                             audioProvider.totalDuration = Duration(microseconds: song.duration!);
                             audioProvider.playMusic(song.id, song.uri, song.duration, update);
+                            audioProvider.songTitle = song.title;
+                            audioProvider.songArtist = song.artist;
+                            audioProvider.songUri = song.uri;
                             audioProvider.isPlaying = true;
                             audioProvider.resume = false;
                             setState(() {

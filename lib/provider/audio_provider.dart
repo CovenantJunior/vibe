@@ -15,9 +15,10 @@ class AudioProvider extends ChangeNotifier{
 
   int? playlistCount;
 
-  int? songIndex;
   Duration currentDuration = Duration.zero;
   Duration totalDuration = Duration.zero;
+
+  bool isAlive = false;
   
   bool isPlaying = false;
 
@@ -25,11 +26,19 @@ class AudioProvider extends ChangeNotifier{
 
   bool paused = false;
   
+  int? songIndex;
+
+  String? songTitle;
+
+  String? songArtist;
+
+  String? songUri;
+
   Future<void> playMusic(id, uri, duration, update) async {
     _audioPlayer.stop();
-    setSongIndex(id);
     totalDuration = Duration(milliseconds: duration);
-    if (paused != true) {
+    if (paused != true || songIndex != id) {
+      setSongIndex(id);
       currentDuration = Duration.zero;
       _audioPlayer.setUrl(uri);
     }
@@ -38,6 +47,7 @@ class AudioProvider extends ChangeNotifier{
     isPlaying = true;
     resume = false;
     paused = false;
+    isAlive = true;
     WidgetsBinding.instance.addPostFrameCallback((_){
       notifyListeners();
     });
@@ -98,7 +108,7 @@ class AudioProvider extends ChangeNotifier{
 
   void nextMusic(id, uri, duration, update) async {
     if (id < (playlistCount! - 1)) {
-      songIndex = id;
+      id = id;
       playMusic(id, uri, duration, update);
     } else {
       // Last song playing (if not shuffling)
@@ -107,7 +117,7 @@ class AudioProvider extends ChangeNotifier{
 
   void previousMusic(id, uri, duration, update) async {    
     if (id >= 0) {
-      songIndex = id;
+      id = id;
       playMusic(id, uri, duration, update);
     } else {
       // First song playing (if not shuffling)
