@@ -4,6 +4,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:vibe/components/vibe_bottom_sheet.dart';
 import 'package:vibe/components/vibe_drawer.dart';
+import 'package:vibe/layouts/vibe_to_music.dart';
 import 'package:vibe/provider/audio_provider.dart';
 import 'package:vibe/tabs/albums.dart';
 import 'package:vibe/tabs/apple_music.dart';
@@ -171,7 +172,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           ),
         ]
       ),
-      bottomSheet: audioProvider.isAlive ? const VibeBottomSheet() : null
+      bottomSheet: audioProvider.isAlive ? GestureDetector(child: const VibeBottomSheet(), onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: audioProvider.song!)));
+      },) : null
     );
   }
 }

@@ -150,6 +150,7 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
                           ),
                         ),
                         onTap: () {
+                          audioProvider.song = song;
                           if (audioProvider.songIndex == song.id) {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
                           } else {

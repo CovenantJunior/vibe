@@ -63,8 +63,14 @@ class _VibeBottomSheetState extends State<VibeBottomSheet> with SingleTickerProv
         )
       ) : IconButton(
         onPressed: (){
-          audioProvider.resumeMusic();
-          audioProvider.isPlaying = true;
+          if (audioProvider.resume) {
+            audioProvider.resumeMusic();
+            audioProvider.isPlaying = true;
+          } else {
+            // Play if it isn't a resumption
+            audioProvider.playMusic(audioProvider.songIndex, audioProvider.songUri, audioProvider.totalDuration.inMilliseconds, update);
+            audioProvider.isPlaying = true;
+          }
         },
         icon: const Icon(
           Icons.play_arrow_outlined,
