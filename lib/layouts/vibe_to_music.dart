@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:vibe/components/vibe_to_lyrics.dart';
 import 'package:vibe/components/vibe_to_song.dart';
+import 'package:vibe/theme_skins/skins.dart';
 
 class VibeToMusic extends StatefulWidget {
   final SongModel song;
@@ -29,6 +30,7 @@ class _VibeToMusicState extends State<VibeToMusic> with SingleTickerProviderStat
   Widget build(BuildContext context) { 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: coolGradients[8][0],
         bottom: TabBar(
           isScrollable: true,
           tabAlignment: TabAlignment.start,
