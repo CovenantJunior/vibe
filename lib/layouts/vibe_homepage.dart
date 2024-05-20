@@ -14,6 +14,7 @@ import 'package:vibe/tabs/genres.dart';
 import 'package:vibe/tabs/playlists.dart';
 import 'package:vibe/tabs/songs.dart';
 import 'package:vibe/tabs/spotify.dart';
+import 'package:vibe/theme_skins/skins.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -49,6 +50,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     var audioProvider = context.watch<AudioProvider>();
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: coolGradients[8][0],
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

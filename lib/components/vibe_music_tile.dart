@@ -6,6 +6,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:vibe/layouts/vibe_to_music.dart';
 import 'package:vibe/provider/audio_provider.dart';
+import 'package:vibe/theme_skins/skins.dart';
 
 class VibeMusicTile extends StatefulWidget {
   const VibeMusicTile({super.key});
@@ -101,79 +102,88 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
               return const Center(child: Text('No music files found'));
             } else {
               List<SongModel> audioFiles = snapshot.data!;
-              return ListView.builder(
-                itemCount: audioFiles.length,
-                itemBuilder: (context, index) {
-                  audioProvider.setPlaylistCount(audioFiles.length);
-                  SongModel song = audioFiles[index];
-                  return Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                    child: Container(
-                      child: ListTile(
-                        dense: true,
-                        leading: audioProvider.songIndex != song.id ? SizedBox(
-                          width: 30,
-                          child: QueryArtworkWidget(
-                            artworkWidth: 30,
-                            artworkHeight: 30,
-                            id: song.id,
-                            quality: 100,
-                            artworkQuality: FilterQuality.high,
-                            format: ArtworkFormat.PNG,
-                            type: ArtworkType.AUDIO,
-                            nullArtworkWidget: const SizedBox(
-                              width: 30,
-                              child: Icon(
-                                Icons.music_note_outlined,
-                                size: 25,
+              return Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: coolGradients[8],
+                  ),
+                ),
+                child: ListView.builder(
+                  itemCount: audioFiles.length,
+                  itemBuilder: (context, index) {
+                    audioProvider.setPlaylistCount(audioFiles.length);
+                    SongModel song = audioFiles[index];
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                      child: Container(
+                        child: ListTile(
+                          dense: true,
+                          leading: audioProvider.songIndex != song.id ? SizedBox(
+                            width: 30,
+                            child: QueryArtworkWidget(
+                              artworkWidth: 30,
+                              artworkHeight: 30,
+                              id: song.id,
+                              quality: 100,
+                              artworkQuality: FilterQuality.high,
+                              format: ArtworkFormat.PNG,
+                              type: ArtworkType.AUDIO,
+                              nullArtworkWidget: const SizedBox(
+                                width: 30,
+                                child: Icon(
+                                  Icons.music_note_outlined,
+                                  size: 25,
+                                ),
                               ),
                             ),
+                          ) : SizedBox(
+                            width: 30,
+                            child: Lottie.asset(
+                              "assets/animations/1715719604390.json",
+                              controller: _playChart,
+                              frameRate: FrameRate.max
+                            ),
                           ),
-                        ) : SizedBox(
-                          width: 30,
-                          child: Lottie.asset(
-                            "assets/animations/1715719604390.json",
-                            controller: _playChart,
-                            frameRate: FrameRate.max
+                          title: Text(
+                            song.title,
+                            style: const TextStyle(
+                              fontFamily: 'Futura'
+                            ),
                           ),
-                        ),
-                        title: Text(
-                          song.title,
-                          style: const TextStyle(
-                            fontFamily: 'Futura'
+                          subtitle: Text(
+                            song.artist ?? 'Unknown Artist',
+                            style: const TextStyle(
+                              fontFamily: 'Futura'
+                            ),
                           ),
-                        ),
-                        subtitle: Text(
-                          song.artist ?? 'Unknown Artist',
-                          style: const TextStyle(
-                            fontFamily: 'Futura'
-                          ),
-                        ),
-                        onTap: () {
-                          audioProvider.song = song;
-                          if (audioProvider.songIndex == song.id) {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
-                          } else {
-                            audioProvider.currentDuration = Duration.zero;
-                            audioProvider.totalDuration = Duration(microseconds: song.duration!);
-                            audioProvider.playMusic(song.id, song.uri, song.duration, update);
-                            audioProvider.songTitle = song.title;
-                            audioProvider.songArtist = song.artist;
-                            audioProvider.songUri = song.uri;
-                            audioProvider.isPlaying = true;
-                            audioProvider.resume = false;
-                            setState(() {
-                              playDuration = Duration(milliseconds: song.duration!);
-                            });
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
-                          }
-                        },
-                      ).animate().fadeIn().scale(
-                        duration: const Duration(milliseconds: 300)
-                      )
-                    ),
-                  );
-                },
+                          onTap: () {
+                            audioProvider.song = song;
+                            if (audioProvider.songIndex == song.id) {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
+                            } else {
+                              audioProvider.currentDuration = Duration.zero;
+                              audioProvider.totalDuration = Duration(microseconds: song.duration!);
+                              audioProvider.playMusic(song.id, song.uri, song.duration, update);
+                              audioProvider.songTitle = song.title;
+                              audioProvider.songArtist = song.artist;
+                              audioProvider.songUri = song.uri;
+                              audioProvider.isPlaying = true;
+                              audioProvider.resume = false;
+                              setState(() {
+                                playDuration = Duration(milliseconds: song.duration!);
+                              });
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
+                            }
+                          },
+                        ).animate().fadeIn().scale(
+                          duration: const Duration(milliseconds: 300)
+                        )
+                      ),
+                    );
+                  },
+                ),
               );
             }
           },

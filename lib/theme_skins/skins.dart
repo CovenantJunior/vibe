@@ -53,7 +53,7 @@ List<List<Color>> coolGradients = [
     const Color(0xFFE100FF), // Pink
   ],
 
-  // Gradient Skin 9: Midnight Eclipse
+  // Gradient Skin 9: Midnight Eclipse (Default)
   [
     const Color.fromARGB(106, 13, 32, 96), // Dark blue
     const Color.fromARGB(121, 137, 27, 27), // Deep red
