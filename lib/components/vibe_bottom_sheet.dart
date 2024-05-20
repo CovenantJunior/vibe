@@ -63,7 +63,8 @@ class _VibeBottomSheetState extends State<VibeBottomSheet> with SingleTickerProv
         )
       ) : IconButton(
         onPressed: (){
-          audioProvider.playMusic(audioProvider.songIndex, audioProvider.songUri, audioProvider.currentDuration, update);
+          audioProvider.resumeMusic();
+          audioProvider.isPlaying = true;
         },
         icon: const Icon(
           Icons.play_arrow_outlined,

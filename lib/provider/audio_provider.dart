@@ -91,6 +91,7 @@ class AudioProvider extends ChangeNotifier{
     await _audioPlayer.play();
     isPlaying = true;
     resume = false;
+    paused = false;
     WidgetsBinding.instance.addPostFrameCallback((_){
       notifyListeners();
     });
