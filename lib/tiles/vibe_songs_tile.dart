@@ -27,7 +27,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
         sortType: SongSortType.TITLE,
         orderType: OrderType.ASC_OR_SMALLER,
         ignoreCase: true,
-        uriType: UriType.EXTERNAL
+        uriType: UriType.INTERNAL
       );
     } else {
       return [];
@@ -95,7 +95,16 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
           future: _audioFilesFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: coolGradients[8],
+                    ),
+                ),
+                child: const Center(child: CircularProgressIndicator())
+              );
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -168,6 +177,10 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                             style: const TextStyle(
                               fontFamily: 'Futura'
                             ),
+                          ),
+                          trailing: IconButton(
+                            onPressed: null,
+                            icon: Icons.more_vert
                           ),
                           onTap: () {
                             audioProvider.song = song;
