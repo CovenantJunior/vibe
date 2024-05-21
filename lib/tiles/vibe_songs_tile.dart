@@ -8,14 +8,14 @@ import 'package:vibe/layouts/vibe_to_music.dart';
 import 'package:vibe/provider/audio_provider.dart';
 import 'package:vibe/theme_skins/skins.dart';
 
-class VibeMusicTile extends StatefulWidget {
-  const VibeMusicTile({super.key});
+class VibeSongsTile extends StatefulWidget {
+  const VibeSongsTile({super.key});
 
   @override
-  State<VibeMusicTile> createState() => _VibeMusicTileState();
+  State<VibeSongsTile> createState() => _VibeSongsTileState();
 }
 
-class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin  {
+class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin  {
 
   late AnimationController _playChart;
   late Duration playDuration;
@@ -99,7 +99,18 @@ class _VibeMusicTileState extends State<VibeMusicTile> with SingleTickerProvider
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const Center(child: Text('No music files found'));
+              return Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: coolGradients[8],
+                  ),
+                ),
+                child: const Center(child: Text('No music files found', style: TextStyle(
+                  fontFamily: 'Futura'
+                ),)),
+              );
             } else {
               List<SongModel> audioFiles = snapshot.data!;
               return Container(

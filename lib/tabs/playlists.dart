@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vibe/tiles/vibe_playlists_tile.dart';
 
 class Playlists extends StatefulWidget {
   const Playlists({super.key});
@@ -10,6 +11,6 @@ class Playlists extends StatefulWidget {
 class _PlaylistsState extends State<Playlists> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const VibePlaylistsTile();
   }
 }

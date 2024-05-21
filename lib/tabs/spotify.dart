@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vibe/tiles/vibe_spotify_tile.dart';
 
 class Spotify extends StatefulWidget {
   const Spotify({super.key});
@@ -10,6 +11,6 @@ class Spotify extends StatefulWidget {
 class _SpotifyState extends State<Spotify> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const VibeSpotifyTile();
   }
 }

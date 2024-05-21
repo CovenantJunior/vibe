@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vibe/tiles/vibe_album_apple_music_tile.dart';
 
 class AppleMusic extends StatefulWidget {
   const AppleMusic({super.key});
@@ -10,6 +11,6 @@ class AppleMusic extends StatefulWidget {
 class _AppleMusicState extends State<AppleMusic> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const VibeAppleMusicTile();
   }
 }
