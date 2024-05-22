@@ -14,7 +14,7 @@ import 'package:vibe/tabs/genres.dart';
 import 'package:vibe/tabs/playlists.dart';
 import 'package:vibe/tabs/songs.dart';
 import 'package:vibe/tabs/spotify.dart';
-import 'package:vibe/theme_skins/skins.dart';
+import 'package:vibe/skins.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

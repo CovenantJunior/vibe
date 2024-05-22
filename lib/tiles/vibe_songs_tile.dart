@@ -6,7 +6,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:vibe/layouts/vibe_to_music.dart';
 import 'package:vibe/provider/audio_provider.dart';
-import 'package:vibe/theme_skins/skins.dart';
+import 'package:vibe/skins.dart';
 
 class VibeSongsTile extends StatefulWidget {
   const VibeSongsTile({super.key});
@@ -178,13 +178,12 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                               fontFamily: 'Futura'
                             ),
                           ),
-                          trailing: IconButton(
-                            onPressed: null,
-                            icon: Icons.more_vert
-                          ),
                           onTap: () {
                             audioProvider.song = song;
                             if (audioProvider.songIndex == song.id) {
+                              audioProvider.songTitle = song.title;
+                              audioProvider.songArtist = song.artist;
+                              audioProvider.songUri = song.uri;
                               Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
                             } else {
                               audioProvider.currentDuration = Duration.zero;
@@ -201,6 +200,14 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                               Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
                             }
                           },
+                          trailing: IconButton(
+                            onPressed: () {
+                              print("Hi");
+                            },
+                            icon: const Icon(
+                              Icons.more_vert
+                            )
+                          ),
                         ).animate().fadeIn().scale(
                           duration: const Duration(milliseconds: 300)
                         )

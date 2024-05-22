@@ -36,7 +36,9 @@ class _VibeState extends State<Vibe> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
+      theme: ThemeData.dark(
+        // useMaterial3: false
+      ),
       routes: {
         '/home': (context) => const HomePage(),
         '/preferences': (context) => const VibePreference(),

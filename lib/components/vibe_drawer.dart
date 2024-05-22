@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vibe/components/vibe_drawer_tile.dart';
 import 'package:vibe/layouts/vibe_preferences.dart';
-import 'package:vibe/theme_skins/skins.dart';
+import 'package:vibe/skins.dart';
 
 class VibeDrawer extends StatefulWidget {
   const VibeDrawer({super.key});

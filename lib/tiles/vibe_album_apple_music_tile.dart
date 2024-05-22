@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vibe/theme_skins/skins.dart';
+import 'package:vibe/skins.dart';
 
 class VibeAppleMusicTile extends StatefulWidget {
   const VibeAppleMusicTile({super.key});

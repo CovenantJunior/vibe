@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vibe/model/vibe_database.dart';
+import 'package:vibe/skins.dart';
 // import 'package:vibration/vibration.dart';
 
 class VibePreference extends StatefulWidget {
@@ -72,84 +73,96 @@ class _VibePreferenceState extends State<VibePreference> {
           ),
         ),
         centerTitle: true,
+        backgroundColor: coolGradients[8][0],
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Row(
-                      children: [
-                        Icon(Icons.dark_mode_outlined),
-                        SizedBox(width: 20),
-                        Text(
-                          'Dark Mode',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 12,
-                            fontFamily: "Futura"
-                          ),
-                        ),
-                      ],
-                    ),
-                    Transform.scale(
-                      scale: .7,
-                      child: Switch(
-                        value: true,
-                        onChanged: (value) {
-                          
-                        }
-                      ),
-                    )
-                  ],
-                ),
-                const Divider(height: 40),
-                /* Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: coolGradients[8],
+          ),
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        notification == true ? const Icon(Icons.notifications_none_rounded) : const Icon(Icons.notifications_off_outlined),
-                        const SizedBox(width: 20),
-                        Row(
+                        const Row(
                           children: [
-                            const Text(
-                              'Notification',
+                            Icon(Icons.dark_mode_outlined),
+                            SizedBox(width: 20),
+                            Text(
+                              'Dark Mode',
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12,
                                 fontFamily: "Futura"
                               ),
                             ),
-                            const SizedBox(width: 7),
-                            Baseline(baseline: 10.0,
-                            baselineType: TextBaseline.alphabetic,
-                            child: GestureDetector(onTap: notifyInfo, child: const Icon(Icons.help_outline_rounded, size: 15)))
                           ],
                         ),
+                        Transform.scale(
+                          scale: .7,
+                          child: Switch(
+                            value: true,
+                            onChanged: (value) {
+                              
+                            }
+                          ),
+                        )
                       ],
                     ),
-                    Transform.scale(
-                      scale: .7,
-                      child: Switch(
-                        value: notification,
-                        onChanged: (value) {
-                          notification == true ? NotificationService().cancelAllnotification() : Void;
-                          Provider.of<VibeDatabase>(context, listen: false).setNotification(id);
-                        }
-                      ),
-                    )
+                    const Divider(height: 40),
+                    /* Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            notification == true ? const Icon(Icons.notifications_none_rounded) : const Icon(Icons.notifications_off_outlined),
+                            const SizedBox(width: 20),
+                            Row(
+                              children: [
+                                const Text(
+                                  'Notification',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
+                                    fontFamily: "Futura"
+                                  ),
+                                ),
+                                const SizedBox(width: 7),
+                                Baseline(baseline: 10.0,
+                                baselineType: TextBaseline.alphabetic,
+                                child: GestureDetector(onTap: notifyInfo, child: const Icon(Icons.help_outline_rounded, size: 15)))
+                              ],
+                            ),
+                          ],
+                        ),
+                        Transform.scale(
+                          scale: .7,
+                          child: Switch(
+                            value: notification,
+                            onChanged: (value) {
+                              notification == true ? NotificationService().cancelAllnotification() : Void;
+                              Provider.of<VibeDatabase>(context, listen: false).setNotification(id);
+                            }
+                          ),
+                        )
+                      ],
+                    ), */
                   ],
-                ), */
-              ],
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

@@ -30,5 +30,36 @@ class AudioList {
   late int track;
   late String uri;
 
-  AudioList();
+  AudioList({
+    required this.id,
+    required this.songTitle,
+    required this.songUri,
+    required this.songDuration,
+    required this.album,
+    required this.albumId,
+    required this.artist,
+    required this.artistId,
+    required this.bookmark,
+    required this.composer,
+    required this.data,
+    required this.dateAdded,
+    required this.dateModified,
+    required this.displayName,
+    required this.displayNameWOExt,
+    required this.duration,
+    required this.fileExtension,
+    required this.genre,
+    required this.genreId,
+    required this.getMap,
+    required this.isAlarm,
+    required this.isAudioBook,
+    required this.isMusic,
+    required this.isNotification,
+    required this.isPodcast,
+    required this.isRingtone,
+    required this.size,
+    required this.title,
+    required this.track,
+    required this.uri,
+  });
 }

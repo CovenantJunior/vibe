@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vibe/theme_skins/skins.dart';
+import 'package:vibe/skins.dart';
 
 class VibeAlbumTile extends StatefulWidget {
   const VibeAlbumTile({super.key});

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:vibe/skins.dart';
 
 class VibeToLyrics extends StatefulWidget {
   final SongModel song;
@@ -15,6 +16,14 @@ class VibeToLyrics extends StatefulWidget {
 class _VibeToLyricsState extends State<VibeToLyrics> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: coolGradients[8],
+          ),
+      ),
+    );
   }
 }

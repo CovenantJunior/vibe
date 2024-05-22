@@ -4,7 +4,7 @@ import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 import 'package:vibe/provider/audio_provider.dart';
 import 'package:vibe/components/vibe_cover.dart';
-import 'package:vibe/theme_skins/skins.dart';
+import 'package:vibe/skins.dart';
 
 class VibeToSong extends StatefulWidget {
   final SongModel song;
@@ -81,7 +81,7 @@ class _VibeToSongState extends State<VibeToSong> {
                         overflow: TextOverflow.fade,
                         style: const TextStyle(
                           fontFamily: 'Futura',
-                          fontSize: 16,
+                          fontSize: 15,
                           fontWeight: FontWeight.w500),
                     )),
                     Center(
