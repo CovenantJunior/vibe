@@ -30,6 +30,7 @@ class _VibeToMusicState extends State<VibeToMusic> with SingleTickerProviderStat
   Widget build(BuildContext context) { 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: coolGradients[8][0],
         bottom: TabBar(
           isScrollable: true,

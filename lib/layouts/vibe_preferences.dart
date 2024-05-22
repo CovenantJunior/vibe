@@ -64,6 +64,7 @@ class _VibePreferenceState extends State<VibePreference> {
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         // Used AppBar just for the back icon
         title: const Text(
           "Preferences",

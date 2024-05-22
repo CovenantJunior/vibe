@@ -50,6 +50,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     var audioProvider = context.watch<AudioProvider>();
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: coolGradients[8][0],
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.start,

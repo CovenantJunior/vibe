@@ -27,7 +27,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
         sortType: SongSortType.TITLE,
         orderType: OrderType.ASC_OR_SMALLER,
         ignoreCase: true,
-        uriType: UriType.INTERNAL
+        uriType: UriType.EXTERNAL
       );
     } else {
       return [];
@@ -202,7 +202,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                           },
                           trailing: IconButton(
                             onPressed: () {
-                              print("Hi");
+                              
                             },
                             icon: const Icon(
                               Icons.more_vert

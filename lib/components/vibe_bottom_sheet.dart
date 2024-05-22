@@ -38,6 +38,10 @@ class _VibeBottomSheetState extends State<VibeBottomSheet> with SingleTickerProv
           end: Alignment.bottomRight,
           colors: coolGradients[8],
         ),
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30)
+        )
       ),
       child: ListTile(
         dense: true,
