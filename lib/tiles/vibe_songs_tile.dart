@@ -146,8 +146,6 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                               artworkWidth: 30,
                               artworkHeight: 30,
                               id: song.id,
-                              quality: 100,
-                              artworkQuality: FilterQuality.high,
                               format: ArtworkFormat.PNG,
                               type: ArtworkType.AUDIO,
                               nullArtworkWidget: const SizedBox(
@@ -163,7 +161,6 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                             child: Lottie.asset(
                               "assets/animations/1715719604390.json",
                               controller: _playChart,
-                              frameRate: FrameRate.max
                             ),
                           ),
                           title: Text(

@@ -30,6 +30,15 @@ class _VibeToMusicState extends State<VibeToMusic> with SingleTickerProviderStat
   Widget build(BuildContext context) { 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.keyboard_arrow_down_rounded,
+            size: 30.0,
+          )
+        ),
         elevation: 0,
         backgroundColor: coolGradients[8][0],
         bottom: TabBar(

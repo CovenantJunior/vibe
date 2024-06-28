@@ -85,18 +85,18 @@ class _VibePreferenceState extends State<VibePreference> {
             colors: coolGradients[8],
           ),
         ),
-        child: Column(
+        child: const Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(10.0),
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(20.0),
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Row(
+                        /* const Row(
                           children: [
                             Icon(Icons.dark_mode_outlined),
                             SizedBox(width: 20),
@@ -118,10 +118,10 @@ class _VibePreferenceState extends State<VibePreference> {
                               
                             }
                           ),
-                        )
+                        ) */
                       ],
                     ),
-                    const Divider(height: 40),
+                    // Divider(height: 40),
                     /* Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
