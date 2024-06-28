@@ -175,9 +175,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           ),
         ]
       ),
-      bottomSheet: audioProvider.isAlive ? GestureDetector(child: const VibeBottomSheet(), onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: audioProvider.song!)));
-      },) : null
+      bottomSheet: audioProvider.isAlive ? GestureDetector(
+        child: const VibeBottomSheet(),
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: audioProvider.song!)));
+        },
+      ) : null
     );
   }
 }

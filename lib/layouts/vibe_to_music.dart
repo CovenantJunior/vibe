@@ -36,7 +36,7 @@ class _VibeToMusicState extends State<VibeToMusic> with SingleTickerProviderStat
           },
           icon: const Icon(
             Icons.keyboard_arrow_down_rounded,
-            size: 30.0,
+            size: 35.0,
           )
         ),
         elevation: 0,
