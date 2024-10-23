@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 /*
