@@ -136,15 +136,13 @@ flutter:
         - asset: assets/fonts/spotify/SpotifyMix-Medium.ttf 
         - asset: assets/fonts/spotify/SpotifyMix-Light.ttf
         - asset: assets/fonts/spotify/SpotifyMix-Black.ttf
-        - asset: assets/fonts/spotify/SpotifyMix-ExtraLight.ttf
-        - asset: assets/fonts/spotify/SpotifyMix-ExtraBold.ttf
-        - asset: assets/fonts/spotify/SpotifyMix-Italic.ttf
         - asset: assets/fonts/spotify/SpotifyMix-ThinItalic.ttf
         - asset: assets/fonts/spotify/SpotifyMix-MediumItalic.ttf
         - asset: assets/fonts/spotify/SpotifyMix-LightItalic.ttf
         - asset: assets/fonts/spotify/SpotifyMix-BlackItalic.ttf
-        - asset: assets/fonts/spotify/SpotifyMix-ExtraLightItalic.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-Extrabold.ttf
         - asset: assets/fonts/spotify/SpotifyMix-ExtraBoldItalic.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-BoldItalic.ttf
         - asset: assets/fonts/spotify/SpotifyMix-Ultra.ttf 
         - asset: assets/fonts/spotify/SpotifyMix-UltraItalic.ttf
   #
