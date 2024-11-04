@@ -33,8 +33,8 @@ class _VibeDrawerState extends State<VibeDrawer> {
                 ),
         
               VibeDrawerTile(
-                title: 'Home',
-                leading: const Icon(Icons.home_outlined),
+                title: 'Library',
+                leading: const Icon(Icons.library_music_outlined),
                 onTap: () {
                   Navigator.pop(context);                
                 }),

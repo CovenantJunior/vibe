@@ -22,7 +22,7 @@ class _VibeToSongState extends State<VibeToSong> {
 
   @override
   Widget build(BuildContext context) {
-    var audioProvider = Provider.of<AudioProvider>(context, listen: true);
+    var audioProvider = context.read<AudioProvider>();
     int sec = widget.song.duration!;
     int songCurrentDuration = audioProvider.currentDuration.inSeconds;
     int songDuration = Duration(milliseconds: sec).inSeconds;

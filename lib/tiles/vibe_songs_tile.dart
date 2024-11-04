@@ -148,14 +148,17 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                               format: ArtworkFormat.JPEG,
                               type: ArtworkType.AUDIO,
                               artworkBorder: BorderRadius.circular(7),
-                              nullArtworkWidget: SizedBox(
-                                width: 30,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: const Icon(
-                                    Icons.music_note_outlined,
-                                    size: 25,
-                                  ),
+                              nullArtworkWidget: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.grey,
+                                    width: 1,
+                                  ), // Red border
+                                  borderRadius: BorderRadius.circular(10), // Rounded corners
+                                ),
+                                child: const Icon(
+                                  Icons.music_note_outlined,
+                                  size: 30,
                                 ),
                               ),
                             ),
