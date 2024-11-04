@@ -104,43 +104,49 @@ flutter:
         - asset: assets/fonts/futura/FuturaCyrillicLight.ttf
         - asset: assets/fonts/futura/FuturaCyrillicBook.ttf
         - asset: assets/fonts/futura/FuturaCyrillicMedium.ttf
+        
     - family: Gotham
       fonts:
         - asset: assets/fonts/gotham/Gotham-Black.otf
-          weight: 900
         - asset: assets/fonts/gotham/Gotham-Bold.otf
-          weight: 700
-        - asset: assets/fonts/gotham/Gotham-BoldItalic.otf
-          weight: 700
-          style: italic
-        - asset: assets/fonts/gotham/GothamBook.otf
-          weight: 400
         - asset: assets/fonts/gotham/Gotham-BookItalic.otf
-          weight: 400
-          style: italic
+
         - asset: assets/fonts/gotham/Gotham-Light.otf
-          weight: 300
-        - asset: assets/fonts/gotham/Gotham-LightItalic.otf
-          weight: 300
-          style: italic
-        - asset: assets/fonts/gotham/Gotham-Medium.otf
-          weight: 500
-        - asset: assets/fonts/gotham/Gotham-MediumItalic.otf
-          weight: 500
-          style: italic
         - asset: assets/fonts/gotham/Gotham-Thin.otf
-          weight: 100
         - asset: assets/fonts/gotham/Gotham-ThinItalic.otf
-          weight: 100
-          style: italic
         - asset: assets/fonts/gotham/Gotham-UltraItalic.otf
-          weight: 800
-          style: italic
         - asset: assets/fonts/gotham/Gotham-XLight.otf
-          weight: 200
         - asset: assets/fonts/gotham/Gotham-XLightItalic.otf
-          weight: 200
-          style: italic
+        - asset: assets/fonts/gotham/GothamBold.ttf
+        - asset: assets/fonts/gotham/GothamBoldItalic.ttf
+        - asset: assets/fonts/gotham/GothamBook.ttf
+        - asset: assets/fonts/gotham/GothamBookItalic.ttf
+
+        - asset: assets/fonts/gotham/GothamLight.ttf
+        - asset: assets/fonts/gotham/GothamLightItalic.ttf
+        - asset: assets/fonts/gotham/GothamMedium_1.ttf
+        - asset: assets/fonts/gotham/GothamMedium.ttf
+        - asset: assets/fonts/gotham/GothamMediumItalic.ttf
+
+    - family: SpotifyMix
+      fonts:
+        - asset: assets/fonts/spotify/SpotifyMix-Thin.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-Bold.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-Regular.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-Medium.ttf 
+        - asset: assets/fonts/spotify/SpotifyMix-Light.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-Black.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-ExtraLight.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-ExtraBold.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-Italic.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-ThinItalic.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-MediumItalic.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-LightItalic.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-BlackItalic.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-ExtraLightItalic.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-ExtraBoldItalic.ttf
+        - asset: assets/fonts/spotify/SpotifyMix-Ultra.ttf 
+        - asset: assets/fonts/spotify/SpotifyMix-UltraItalic.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

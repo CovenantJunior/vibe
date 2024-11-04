@@ -116,7 +116,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                   ),
                 ),
                 child: const Center(child: Text('No music files found', style: TextStyle(
-                  fontFamily: 'Gotham'
+                  fontFamily: 'SpotifyMix'
                 ),)),
               );
             } else {
@@ -134,20 +134,21 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                   itemBuilder: (context, index) {
                     audioProvider.setPlaylistCount(audioFiles.length);
                     SongModel song = audioFiles[index];
+                    print("${audioProvider.songIndex} ${song.id}");
                     return Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
                       child: Container(
                         child: ListTile(
                           dense: true,
-                          leading: audioProvider.songIndex != song.id ? SizedBox(
+                          leading: audioProvider.songIndex != song.id ? const SizedBox(
                             width: 30,
                             child: QueryArtworkWidget(
+                              id: 98,
                               artworkWidth: 30,
                               artworkHeight: 30,
-                              id: song.id,
                               format: ArtworkFormat.PNG,
                               type: ArtworkType.AUDIO,
-                              nullArtworkWidget: const SizedBox(
+                              nullArtworkWidget: SizedBox(
                                 width: 30,
                                 child: Icon(
                                   Icons.music_note_outlined,
@@ -165,13 +166,13 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                           title: Text(
                             song.title,
                             style: const TextStyle(
-                              fontFamily: 'Gotham'
+                              fontFamily: 'SpotifyMix'
                             ),
                           ),
                           subtitle: Text(
                             song.artist ?? 'Unknown Artist',
                             style: const TextStyle(
-                              fontFamily: 'Gotham'
+                              fontFamily: 'SpotifyMix'
                             ),
                           ),
                           onTap: () {
