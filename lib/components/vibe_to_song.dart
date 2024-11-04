@@ -60,21 +60,15 @@ class _VibeToSongState extends State<VibeToSong> {
                           child: QueryArtworkWidget(
                             id: widget.song.id,
                             type: ArtworkType.AUDIO,
+                            format: ArtworkFormat.JPEG,
                             artworkHeight: 250,
                             artworkWidth: 250,
                             artworkBorder: BorderRadius.circular(10),
-                            nullArtworkWidget: QueryArtworkWidget(
-                              id: widget.song.id,
-                              type: ArtworkType.AUDIO,
-                              artworkHeight: 250,
-                              artworkWidth: 250,
-                              artworkBorder: BorderRadius.circular(10),
-                              nullArtworkWidget: Icon(
-                                Icons.library_music_outlined,
-                                size: 200,
-                                color: coolGradients[8][0],
-                              ),
-                            )
+                            nullArtworkWidget: Icon(
+                              Icons.library_music_outlined,
+                              size: 200,
+                              color: coolGradients[8][0],
+                            ),
                           ),
                         ),
                       )

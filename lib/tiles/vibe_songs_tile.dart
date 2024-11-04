@@ -134,21 +134,21 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                   itemBuilder: (context, index) {
                     audioProvider.setPlaylistCount(audioFiles.length);
                     SongModel song = audioFiles[index];
-                    print("${audioProvider.songIndex} ${song.id}");
                     return Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
                       child: Container(
                         child: ListTile(
                           dense: true,
-                          leading: audioProvider.songIndex != song.id ? const SizedBox(
+                          leading: audioProvider.songIndex != song.id ? SizedBox(
                             width: 30,
                             child: QueryArtworkWidget(
-                              id: 98,
+                              // controller: OnAudioQuery(),
+                              id: song.id,
                               artworkWidth: 30,
                               artworkHeight: 30,
-                              format: ArtworkFormat.PNG,
+                              format: ArtworkFormat.JPEG,
                               type: ArtworkType.AUDIO,
-                              nullArtworkWidget: SizedBox(
+                              nullArtworkWidget: const SizedBox(
                                 width: 30,
                                 child: Icon(
                                   Icons.music_note_outlined,
