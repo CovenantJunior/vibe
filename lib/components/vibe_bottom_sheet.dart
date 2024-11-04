@@ -32,6 +32,7 @@ class _VibeBottomSheetState extends State<VibeBottomSheet> with SingleTickerProv
     var audioProvider = context.watch<AudioProvider>();
     audioProvider.isPlaying ? _playChart.repeat() : _playChart.reset();
     return Container(
+      height: 70,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -43,52 +44,61 @@ class _VibeBottomSheetState extends State<VibeBottomSheet> with SingleTickerProv
           topRight: Radius.circular(30)
         )
       ),
-      child: ListTile(
-        dense: true,
-        leading: Lottie.asset(
-          "assets/animations/1715719604390.json",
-          controller: _playChart,
-          repeat: true,
-          height: 40,
-          width: 40
-        ),
-        title: Text(
-          audioProvider.songTitle!,
-          style: const TextStyle(
-            fontFamily: 'Futura'
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ListTile(
+            dense: true,
+            leading: Lottie.asset(
+              "assets/animations/1715719604390.json",
+              controller: _playChart,
+              repeat: true,
+              height: 40,
+              width: 40
+            ),
+            title: Text(
+              audioProvider.songTitle!,
+              style: const TextStyle(
+                fontFamily: 'Circular'
+              ),
+            ),
+            subtitle: const Text(
+              'Unknown Artist',
+              style: TextStyle(
+                fontFamily: 'Circular'
+              ),
+            ),
+            trailing:
+            audioProvider.isPlaying == true ? IconButton(
+              onPressed: (){
+                audioProvider.pauseMusic(audioProvider.songUri);
+              },
+              icon: const Icon(
+                Icons.pause_outlined,
+                size: 30,
+              )
+            ) : IconButton(
+              onPressed: (){
+                if (audioProvider.resume) {
+                  audioProvider.resumeMusic();
+                  audioProvider.isPlaying = true;
+                } else {
+                  // Play if it isn't a resumption
+                  audioProvider.playMusic(audioProvider.songIndex, audioProvider.songUri, audioProvider.totalDuration.inMilliseconds, update);
+                  audioProvider.isPlaying = true;
+                }
+              },
+              icon: const Icon(
+                Icons.play_arrow_outlined,
+                size: 30,
+              )
+            ),
           ),
-        ),
-        subtitle: const Text(
-          'Unknown Artist',
-          style: TextStyle(
-            fontFamily: 'Futura'
-          ),
-        ),
-        trailing:
-        audioProvider.isPlaying == true ? IconButton(
-          onPressed: (){
-            audioProvider.pauseMusic(audioProvider.songUri);
-          },
-          icon: const Icon(
-            Icons.pause_outlined,
-            size: 30,
+          LinearProgressIndicator(
+            value: mounted ? (audioProvider.currentDuration.inMilliseconds / audioProvider.totalDuration.inMilliseconds) : 0,
+            color: Colors.yellow,
           )
-        ) : IconButton(
-          onPressed: (){
-            if (audioProvider.resume) {
-              audioProvider.resumeMusic();
-              audioProvider.isPlaying = true;
-            } else {
-              // Play if it isn't a resumption
-              audioProvider.playMusic(audioProvider.songIndex, audioProvider.songUri, audioProvider.totalDuration.inMilliseconds, update);
-              audioProvider.isPlaying = true;
-            }
-          },
-          icon: const Icon(
-            Icons.play_arrow_outlined,
-            size: 30,
-          )
-        ),
+        ],
       ),
     );
   }

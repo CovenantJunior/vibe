@@ -30,20 +30,11 @@ class _VibeToMusicState extends State<VibeToMusic> with SingleTickerProviderStat
   Widget build(BuildContext context) { 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.keyboard_arrow_down_rounded,
-            size: 35.0,
-          )
-        ),
         elevation: 0,
         backgroundColor: coolGradients[8][0],
         bottom: TabBar(
           isScrollable: true,
-          tabAlignment: TabAlignment.start,
+          tabAlignment: TabAlignment.center,
           controller: _tabController,
           indicatorColor: Colors.yellow,
           dividerColor: Colors.transparent,
@@ -53,14 +44,14 @@ class _VibeToMusicState extends State<VibeToMusic> with SingleTickerProviderStat
               child: Text(
                 'Song',
                 style: TextStyle(
-                  fontFamily: 'Futura'
+                  fontFamily: 'Circular'
                 ),
               ),
             ),
             Text(
               'Lyrics',
               style: TextStyle(
-                fontFamily: 'Futura'
+                fontFamily: 'Circular'
               ),
             ),
           ]

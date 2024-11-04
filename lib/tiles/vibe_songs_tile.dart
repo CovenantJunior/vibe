@@ -27,7 +27,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
         sortType: SongSortType.TITLE,
         orderType: OrderType.ASC_OR_SMALLER,
         ignoreCase: true,
-        uriType: UriType.EXTERNAL
+        uriType: UriType.INTERNAL
       );
     } else {
       return [];
@@ -117,7 +117,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                   ),
                 ),
                 child: const Center(child: Text('No music files found', style: TextStyle(
-                  fontFamily: 'Futura'
+                  fontFamily: 'Circular'
                 ),)),
               );
             } else {
@@ -166,13 +166,13 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                           title: Text(
                             song.title,
                             style: const TextStyle(
-                              fontFamily: 'Futura'
+                              fontFamily: 'Circular'
                             ),
                           ),
                           subtitle: Text(
                             song.artist ?? 'Unknown Artist',
                             style: const TextStyle(
-                              fontFamily: 'Futura'
+                              fontFamily: 'Circular'
                             ),
                           ),
                           onTap: () {

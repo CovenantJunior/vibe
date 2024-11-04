@@ -33,7 +33,7 @@ class _VibePreferenceState extends State<VibePreference> {
         title: Text(
           "Notification",
           style: TextStyle(
-            fontFamily: "Futura",
+            fontFamily: "Circular",
             fontWeight: FontWeight.w500,
             fontSize: 20
           ),
@@ -41,7 +41,7 @@ class _VibePreferenceState extends State<VibePreference> {
         content: Text(
           "Notifications are shown at the best time of the day, just sit back",
           style: TextStyle(
-            fontFamily: "Futura",
+            fontFamily: "Circular",
             fontWeight: FontWeight.w500,
           )
         ),
@@ -69,7 +69,7 @@ class _VibePreferenceState extends State<VibePreference> {
         title: const Text(
           "Preferences",
           style: TextStyle(
-            fontFamily: "Futura",
+            fontFamily: "Circular",
             fontWeight: FontWeight.w500
           ),
         ),
@@ -105,7 +105,7 @@ class _VibePreferenceState extends State<VibePreference> {
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12,
-                                fontFamily: "Futura"
+                                fontFamily: "Circular"
                               ),
                             ),
                           ],
@@ -136,7 +136,7 @@ class _VibePreferenceState extends State<VibePreference> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 12,
-                                    fontFamily: "Futura"
+                                    fontFamily: "Circular"
                                   ),
                                 ),
                                 const SizedBox(width: 7),

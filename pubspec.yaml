@@ -104,6 +104,9 @@ flutter:
         - asset: assets/fonts/futura/FuturaCyrillicLight.ttf
         - asset: assets/fonts/futura/FuturaCyrillicBook.ttf
         - asset: assets/fonts/futura/FuturaCyrillicMedium.ttf
+    - family: Circula
+      fonts:
+        - asset: assets/fonts/circular/Circular.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
