@@ -85,7 +85,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     super.build(context); // Required when using AutomaticKeepAliveClientMixin
-    var audioProvider = context.watch<AudioProvider>();
+    var audioProvider = context.read<AudioProvider>();
     audioProvider.isPlaying ? _playChart.repeat() : _playChart.reset();
     return Scaffold(
       body: RefreshIndicator(
@@ -142,17 +142,20 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                           leading: audioProvider.songIndex != song.id ? SizedBox(
                             width: 30,
                             child: QueryArtworkWidget(
-                              // controller: OnAudioQuery(),
                               id: song.id,
                               artworkWidth: 30,
                               artworkHeight: 30,
                               format: ArtworkFormat.JPEG,
                               type: ArtworkType.AUDIO,
-                              nullArtworkWidget: const SizedBox(
+                              artworkBorder: BorderRadius.circular(7),
+                              nullArtworkWidget: SizedBox(
                                 width: 30,
-                                child: Icon(
-                                  Icons.music_note_outlined,
-                                  size: 25,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: const Icon(
+                                    Icons.music_note_outlined,
+                                    size: 25,
+                                  ),
                                 ),
                               ),
                             ),
@@ -176,6 +179,9 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                             ),
                           ),
                           onTap: () {
+                            setState(() {
+                              audioProvider = context.read<AudioProvider>();
+                            });
                             audioProvider.song = song;
                             if (audioProvider.songIndex == song.id) {
                               audioProvider.songTitle = song.title;
