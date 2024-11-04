@@ -4,7 +4,6 @@ import 'package:lottie/lottie.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:vibe/layouts/vibe_to_music.dart';
 import 'package:vibe/provider/audio_provider.dart';
 import 'package:vibe/skins.dart';
 
@@ -27,7 +26,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
         sortType: SongSortType.SIZE,
         orderType: OrderType.ASC_OR_SMALLER,
         ignoreCase: true,
-        uriType: UriType.INTERNAL
+        uriType: UriType.EXTERNAL
       );
     } else {
       return [];
@@ -117,7 +116,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                   ),
                 ),
                 child: const Center(child: Text('No music files found', style: TextStyle(
-                  fontFamily: 'Circular'
+                  fontFamily: 'Gotham'
                 ),)),
               );
             } else {
@@ -166,13 +165,13 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                           title: Text(
                             song.title,
                             style: const TextStyle(
-                              fontFamily: 'Circular'
+                              fontFamily: 'Gotham'
                             ),
                           ),
                           subtitle: Text(
                             song.artist ?? 'Unknown Artist',
                             style: const TextStyle(
-                              fontFamily: 'Circular'
+                              fontFamily: 'Gotham'
                             ),
                           ),
                           onTap: () {

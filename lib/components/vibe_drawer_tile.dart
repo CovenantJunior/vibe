@@ -22,7 +22,7 @@ class VibeDrawerTile extends StatelessWidget {
         title: Text(
           title,
           style: const TextStyle(
-            fontFamily: 'Circular'
+            fontFamily: 'Gotham'
           ),
         ),
         leading: leading,

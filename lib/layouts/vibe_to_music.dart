@@ -44,14 +44,14 @@ class _VibeToMusicState extends State<VibeToMusic> with SingleTickerProviderStat
               child: Text(
                 'Song',
                 style: TextStyle(
-                  fontFamily: 'Circular'
+                  fontFamily: 'Gotham'
                 ),
               ),
             ),
             Text(
               'Lyrics',
               style: TextStyle(
-                fontFamily: 'Circular'
+                fontFamily: 'Gotham'
               ),
             ),
           ]

@@ -104,9 +104,43 @@ flutter:
         - asset: assets/fonts/futura/FuturaCyrillicLight.ttf
         - asset: assets/fonts/futura/FuturaCyrillicBook.ttf
         - asset: assets/fonts/futura/FuturaCyrillicMedium.ttf
-    - family: Circula
+    - family: Gotham
       fonts:
-        - asset: assets/fonts/circular/Circular.ttf
+        - asset: assets/fonts/gotham/Gotham-Black.otf
+          weight: 900
+        - asset: assets/fonts/gotham/Gotham-Bold.otf
+          weight: 700
+        - asset: assets/fonts/gotham/Gotham-BoldItalic.otf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/gotham/GothamBook.otf
+          weight: 400
+        - asset: assets/fonts/gotham/Gotham-BookItalic.otf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/gotham/Gotham-Light.otf
+          weight: 300
+        - asset: assets/fonts/gotham/Gotham-LightItalic.otf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/gotham/Gotham-Medium.otf
+          weight: 500
+        - asset: assets/fonts/gotham/Gotham-MediumItalic.otf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/gotham/Gotham-Thin.otf
+          weight: 100
+        - asset: assets/fonts/gotham/Gotham-ThinItalic.otf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/gotham/Gotham-UltraItalic.otf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/gotham/Gotham-XLight.otf
+          weight: 200
+        - asset: assets/fonts/gotham/Gotham-XLightItalic.otf
+          weight: 200
+          style: italic
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

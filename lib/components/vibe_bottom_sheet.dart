@@ -59,13 +59,13 @@ class _VibeBottomSheetState extends State<VibeBottomSheet> with SingleTickerProv
             title: Text(
               audioProvider.songTitle!,
               style: const TextStyle(
-                fontFamily: 'Circular'
+                fontFamily: 'Gotham'
               ),
             ),
             subtitle: const Text(
               'Unknown Artist',
               style: TextStyle(
-                fontFamily: 'Circular'
+                fontFamily: 'Gotham'
               ),
             ),
             trailing:

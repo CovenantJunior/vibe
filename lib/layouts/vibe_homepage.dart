@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             Text(
               'Let\'s Vibe',
               style: TextStyle(
-                fontFamily: 'Circular',
+                fontFamily: 'Gotham',
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -80,50 +80,50 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               child: Text(
                 'Songs',
                 style: TextStyle(
-                  fontFamily: 'Circular'
+                  fontFamily: 'Gotham'
                 ),
               ),
             ),
             Text(
               'Playlists',
               style: TextStyle(
-                fontFamily: 'Circular'
+                fontFamily: 'Gotham'
               ),
             ),
             Text(
               'Folders',
               style: TextStyle(
-                fontFamily: 'Circular'
+                fontFamily: 'Gotham'
               ),
             ),
             Text(
               'Albums',
               style: TextStyle(
-                fontFamily: 'Circular'
+                fontFamily: 'Gotham'
               ),
             ),
             Text(
               'Artists',
               style: TextStyle(
-                fontFamily: 'Circular'
+                fontFamily: 'Gotham'
               ),
             ),
             Text(
               'Genres',
               style: TextStyle(
-                fontFamily: 'Circular'
+                fontFamily: 'Gotham'
               ),
             ),
             Text(
               'Spotify',
               style: TextStyle(
-                fontFamily: 'Circular'
+                fontFamily: 'Gotham'
               ),
             ),
             Text(
               'Apple Music',
               style: TextStyle(
-                fontFamily: 'Circular'
+                fontFamily: 'Gotham'
               ),
             ),
           ]

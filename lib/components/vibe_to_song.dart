@@ -86,7 +86,7 @@ class _VibeToSongState extends State<VibeToSong> {
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.fade,
                         style: const TextStyle(
-                          fontFamily: 'Circular',
+                          fontFamily: 'Gotham',
                           fontSize: 15,
                           fontWeight: FontWeight.w500),
                     )),
@@ -95,7 +95,7 @@ class _VibeToSongState extends State<VibeToSong> {
                         widget.song.artist!,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                          fontFamily: 'Circular', fontWeight: FontWeight.w400
+                          fontFamily: 'Gotham', fontWeight: FontWeight.w400
                         ),
                     )),
                   ],
@@ -135,13 +135,13 @@ class _VibeToSongState extends State<VibeToSong> {
                         Text(
                           "${(songCurrentDuration / 60).floor().toString()}:${(songCurrentDuration % 60).toString().padLeft(2, '0')}",
                           style: const TextStyle(
-                            fontFamily: 'Circular',
+                            fontFamily: 'Gotham',
                           ),
                         ),
                         Text(
                           "${(songDuration / 60).floor().toString()}:${(songDuration % 60).toString().padLeft(2, '0')}",
                           style: const TextStyle(
-                            fontFamily: 'Circular',
+                            fontFamily: 'Gotham',
                           ),
                         ),
                       ],
