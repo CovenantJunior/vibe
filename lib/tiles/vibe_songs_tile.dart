@@ -150,8 +150,9 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                               artworkBorder: BorderRadius.circular(7),
                               nullArtworkWidget: Container(
                                 decoration: BoxDecoration(
+                                  color: Colors.transparent,
                                   border: Border.all(
-                                    color: Colors.grey,
+                                    color: Colors.black87,
                                     width: 1,
                                   ), // Red border
                                   borderRadius: BorderRadius.circular(10), // Rounded corners

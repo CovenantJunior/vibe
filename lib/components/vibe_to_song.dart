@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:provider/provider.dart';
-import 'package:vibe/provider/audio_provider.dart';
+import 'package:vibe/components/vibe_controls.dart';
 import 'package:vibe/components/vibe_cover.dart';
 import 'package:vibe/skins.dart';
 
@@ -22,17 +21,7 @@ class _VibeToSongState extends State<VibeToSong> {
 
   @override
   Widget build(BuildContext context) {
-    var audioProvider = context.read<AudioProvider>();
-    int sec = widget.song.duration!;
-    int songCurrentDuration = audioProvider.currentDuration.inSeconds;
-    int songDuration = Duration(milliseconds: sec).inSeconds;
-
-    void update() {
-      setState(() {
-        
-      });
-    }
-     
+         
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -101,93 +90,7 @@ class _VibeToSongState extends State<VibeToSong> {
             
             const SizedBox(height: 70),
         
-            // Controls
-            Expanded(
-              flex: 1,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Slider(
-                    min: 0, 
-                    max: 1,
-                    value: mounted ? (audioProvider.currentDuration.inMilliseconds / audioProvider.totalDuration.inMilliseconds) : 0,
-                    onChanged: (value) {
-                      audioProvider.currentDuration = Duration(milliseconds: (audioProvider.totalDuration.inMilliseconds * value).toInt());
-                      audioProvider.seekDuration(audioProvider.currentDuration);
-                    },
-                    onChangeEnd: (value) {
-                      audioProvider.currentDuration = Duration(milliseconds: (audioProvider.totalDuration.inMilliseconds * value).toInt());
-                      audioProvider.seekDuration(audioProvider.currentDuration);
-                    },
-                  ),
-                  
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "${(songCurrentDuration / 60).floor().toString()}:${(songCurrentDuration % 60).toString().padLeft(2, '0')}",
-                          style: const TextStyle(
-                            fontFamily: 'SpotifyMix',
-                          ),
-                        ),
-                        Text(
-                          "${(songDuration / 60).floor().toString()}:${(songDuration % 60).toString().padLeft(2, '0')}",
-                          style: const TextStyle(
-                            fontFamily: 'SpotifyMix',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            audioProvider.previousMusic(widget.song.id, widget.song.uri, widget.song.duration, update);
-                          },
-                          icon: const Icon(
-                            Icons.skip_previous_outlined,
-                            size: 30,
-                          )
-                        ),
-                        audioProvider.isPlaying == true ? IconButton(
-                          onPressed: (){
-                            audioProvider.pauseMusic(widget.song.uri);
-                          },
-                          icon: const Icon(
-                            Icons.pause_outlined,
-                            size: 30,
-                          )
-                        ) : IconButton(
-                          onPressed: (){
-                            audioProvider.playMusic(widget.song.id, widget.song.uri, widget.song.duration, update);
-                          },
-                          icon: const Icon(
-                            Icons.play_arrow_outlined,
-                            size: 30,
-                          )
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            audioProvider.nextMusic(widget.song.id, widget.song.uri, widget.song.duration, update);
-                          },
-                          icon: const Icon(
-                            Icons.skip_next_outlined,
-                            size: 30,
-                          )
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            )
+            VibeControl(song: widget.song)
           ],
         ),
       ),
