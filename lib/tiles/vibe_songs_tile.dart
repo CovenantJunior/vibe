@@ -24,7 +24,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
   Future<List<SongModel>> getAllAudioFiles() async {
     if (await Permission.storage.request().isGranted) {
       return await audioQuery.querySongs(
-        sortType: SongSortType.TITLE,
+        sortType: SongSortType.SIZE,
         orderType: OrderType.ASC_OR_SMALLER,
         ignoreCase: true,
         uriType: UriType.INTERNAL
@@ -181,7 +181,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                               audioProvider.songTitle = song.title;
                               audioProvider.songArtist = song.artist;
                               audioProvider.songUri = song.uri;
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
+                              // Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
                             } else {
                               audioProvider.currentDuration = Duration.zero;
                               audioProvider.totalDuration = Duration(microseconds: song.duration!);
@@ -194,7 +194,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProvider
                               setState(() {
                                 playDuration = Duration(milliseconds: song.duration!);
                               });
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
+                              // Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: song)));
                             }
                           },
                           trailing: IconButton(
