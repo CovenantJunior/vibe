@@ -23,8 +23,6 @@ if (flutterVersionName == null) {
 }
 
 android {
-    useAndroidX true
-
     namespace "com.teapotlab.vibe"
     compileSdk 34
     ndkVersion flutter.ndkVersion

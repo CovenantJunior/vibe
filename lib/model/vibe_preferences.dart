@@ -1,4 +1,5 @@
 import 'package:isar/isar.dart';
+import 'package:vibe/provider/audio_provider.dart';
 
 // Generate collection file by running `dart run build_runner build`
 part 'vibe_preferences.g.dart';
@@ -9,4 +10,6 @@ class VibePreferences {
   bool? notification;
   bool? vibration;
   int? skin;
+  @ignore
+  List<AudioProvider>? lastPlayer;
 }
