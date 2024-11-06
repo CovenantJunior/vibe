@@ -152,7 +152,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with TickerProviderStateM
                                 decoration: BoxDecoration(
                                   color: Colors.transparent,
                                   border: Border.all(
-                                    color: Colors.black87,
+                                    color: Colors.grey,
                                     width: 1,
                                   ), // Red border
                                   borderRadius: BorderRadius.circular(10), // Rounded corners
