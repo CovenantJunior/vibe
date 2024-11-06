@@ -14,7 +14,7 @@ class VibeSongsTile extends StatefulWidget {
   State<VibeSongsTile> createState() => _VibeSongsTileState();
 }
 
-class _VibeSongsTileState extends State<VibeSongsTile> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin  {
+class _VibeSongsTileState extends State<VibeSongsTile> with TickerProviderStateMixin, AutomaticKeepAliveClientMixin  {
 
   late AnimationController _playChart;
   late Duration playDuration;

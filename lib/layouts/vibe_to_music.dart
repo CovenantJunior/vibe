@@ -15,7 +15,7 @@ class VibeToMusic extends StatefulWidget {
   State<VibeToMusic> createState() => _VibeToMusicState();
 }
 
-class _VibeToMusicState extends State<VibeToMusic> with SingleTickerProviderStateMixin {
+class _VibeToMusicState extends State<VibeToMusic> with TickerProviderStateMixin {
 
   late TabController _tabController;
 
@@ -44,14 +44,14 @@ class _VibeToMusicState extends State<VibeToMusic> with SingleTickerProviderStat
               child: Text(
                 'Song',
                 style: TextStyle(
-                  fontFamily: 'Futura'
+                  fontFamily: 'SpotifyMix'
                 ),
               ),
             ),
             Text(
               'Lyrics',
               style: TextStyle(
-                fontFamily: 'Futura'
+                fontFamily: 'SpotifyMix'
               ),
             ),
           ]

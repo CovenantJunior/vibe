@@ -62,9 +62,9 @@ class _VibeBottomSheetState extends State<VibeBottomSheet> with SingleTickerProv
                 fontFamily: 'SpotifyMix'
               ),
             ),
-            subtitle: const Text(
-              'Unknown Artist',
-              style: TextStyle(
+            subtitle: Text(
+              audioProvider.songArtist!,
+              style: const TextStyle(
                 fontFamily: 'SpotifyMix'
               ),
             ),
