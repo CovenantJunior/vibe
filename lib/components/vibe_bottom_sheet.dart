@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:vibe/components/vibe_bottom_sheet_art.dart';
 import 'package:vibe/provider/audio_provider.dart';
 import 'package:vibe/skins.dart';
 
@@ -50,7 +49,11 @@ class _VibeBottomSheetState extends State<VibeBottomSheet> with SingleTickerProv
         children: [
           ListTile(
             dense: true,
-            leading: const VibeBottomSheetArt(),
+            leading: Lottie.asset(
+              "assets/animations/1715719604390.json",
+              controller: _playChart,
+              repeat: true,
+            ),
             title: Text(
               audioProvider.songTitle!,
               style: const TextStyle(
