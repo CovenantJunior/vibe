@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:on_audio_query/on_audio_query.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:vibe/components/vibe_bottom_sheet_art.dart';
 import 'package:vibe/provider/audio_provider.dart';
 import 'package:vibe/skins.dart';
 
@@ -49,28 +50,7 @@ class _VibeBottomSheetState extends State<VibeBottomSheet> with SingleTickerProv
         children: [
           ListTile(
             dense: true,
-            leading: QueryArtworkWidget(
-              id: audioProvider.songIndex!,
-              artworkWidth: 30,
-              artworkHeight: 30,
-              format: ArtworkFormat.JPEG,
-              type: ArtworkType.AUDIO,
-              artworkBorder: BorderRadius.circular(7),
-              nullArtworkWidget: Container(
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 1,
-                  ), // Red border
-                  borderRadius: BorderRadius.circular(10), // Rounded corners
-                ),
-                child: const Icon(
-                  Icons.music_note_outlined,
-                  size: 30,
-                ),
-              ),
-            ),
+            leading: const VibeBottomSheetArt(),
             title: Text(
               audioProvider.songTitle!,
               style: const TextStyle(
