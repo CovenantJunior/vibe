@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vibe/model/vibe_database.dart';
-import 'package:vibe/skins.dart';
+import 'package:vibe/controller/vibe_controller.dart';
+import 'package:vibe/components/skins.dart';
 // import 'package:vibration/vibration.dart';
 
 class VibePreference extends StatefulWidget {

@@ -5,7 +5,7 @@ import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:vibe/provider/audio_provider.dart';
-import 'package:vibe/skins.dart';
+import 'package:vibe/components/skins.dart';
 
 class VibeSongsTile extends StatefulWidget {
   const VibeSongsTile({super.key});
@@ -145,7 +145,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with TickerProviderStateM
                               id: song.id,
                               artworkWidth: 30,
                               artworkHeight: 30,
-                              format: ArtworkFormat.JPEG,
+                              format: ArtworkFormat.PNG,
                               type: ArtworkType.AUDIO,
                               artworkBorder: BorderRadius.circular(7),
                               nullArtworkWidget: Container(

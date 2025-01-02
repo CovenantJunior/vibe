@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vibe/model/vibe_database.dart';
+import 'package:vibe/controller/vibe_controller.dart';
 
 class VibeCover extends StatefulWidget {
   final Widget child;

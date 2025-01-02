@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:vibe/provider/audio_provider.dart';
-import 'package:vibe/skins.dart';
+import 'package:vibe/components/skins.dart';
 
 class VibeBottomSheet extends StatefulWidget {
   const VibeBottomSheet({super.key});

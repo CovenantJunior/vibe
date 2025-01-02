@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:vibe/skins.dart';
+import 'package:vibe/components/skins.dart';
 
 class VibeToLyrics extends StatefulWidget {
   final SongModel song;

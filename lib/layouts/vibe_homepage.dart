@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_close_app/flutter_close_app.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:flutter_close_app/flutter_close_app.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:vibe/components/vibe_bottom_sheet.dart';
@@ -14,7 +15,7 @@ import 'package:vibe/tabs/genres.dart';
 import 'package:vibe/tabs/playlists.dart';
 import 'package:vibe/tabs/songs.dart';
 import 'package:vibe/tabs/spotify.dart';
-import 'package:vibe/skins.dart';
+import 'package:vibe/components/skins.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -29,7 +30,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       // Permission granted, you can proceed
     } else {
       // Permission denied, close app
-      FlutterCloseApp.close();
+      // FlutterCloseApp.close();
+      Fluttertoast.showToast(
+        msg: "App may malfunctoin without granted permissions",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white
+      );
     }
   }
 
@@ -37,6 +46,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   void search () {
     // search
   }
+
 
   @override
   void initState() {
@@ -48,6 +58,25 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     var audioProvider = context.watch<AudioProvider>();
+    void vibeMusic() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => PopScope(
+        onPopInvokedWithResult: (a, b) {
+        },
+        child: DraggableScrollableSheet(
+          initialChildSize: 1,
+          minChildSize: 1,
+          maxChildSize: 1,
+          builder: (BuildContext context, ScrollController scrollController) { 
+            return VibeToMusic(song: audioProvider.song!);
+          }
+        )
+      )
+    );
+  }
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -177,8 +206,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       ),
       bottomSheet: audioProvider.isAlive ? GestureDetector(
         child: const VibeBottomSheet(),
+        onVerticalDragStart: (e) => vibeMusic(),
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: audioProvider.song!)));
+          // Navigator.push(context, MaterialPageRoute(builder: (context) => VibeToMusic(song: audioProvider.song!)));
+          vibeMusic();
         },
       ) : null
     );

@@ -3,7 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:vibe/components/vibe_controls.dart';
 import 'package:vibe/components/vibe_cover.dart';
-import 'package:vibe/skins.dart';
+import 'package:vibe/components/skins.dart';
 
 class VibeToSong extends StatefulWidget {
   final SongModel song;
@@ -49,7 +49,7 @@ class _VibeToSongState extends State<VibeToSong> {
                           child: QueryArtworkWidget(
                             id: widget.song.id,
                             type: ArtworkType.AUDIO,
-                            format: ArtworkFormat.JPEG,
+                            format: ArtworkFormat.PNG,
                             artworkHeight: 250,
                             artworkWidth: 250,
                             artworkBorder: BorderRadius.circular(10),
