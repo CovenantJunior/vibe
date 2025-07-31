@@ -87,6 +87,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             Text(
               'Let\'s Vibe',
               style: TextStyle(
+                fontSize: 18,
                 fontFamily: 'SpotifyMix',
                 fontWeight: FontWeight.w500,
               ),
@@ -158,13 +159,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           ]
         ),
         actions: [
-          Tooltip(
+          /* Tooltip(
             message: "Theme",
             child: IconButton(
               onPressed: search,
               icon: const Icon(Icons.color_lens_outlined)
             ),
-          ),
+          ), */
           Tooltip(
             message: "Search",
             child: IconButton(

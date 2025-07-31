@@ -22,6 +22,7 @@ class VibeDrawerTile extends StatelessWidget {
         title: Text(
           title,
           style: const TextStyle(
+            fontSize: 16,
             fontFamily: 'SpotifyMix'
           ),
         ),
