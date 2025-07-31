@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: coolGradients[8][0],
+        backgroundColor: coolGradients[0][0],
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

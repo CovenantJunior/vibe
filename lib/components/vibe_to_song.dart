@@ -27,7 +27,7 @@ class _VibeToSongState extends State<VibeToSong> {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: coolGradients[8],
+          colors: coolGradients[0],
         ),
       ),
       child: Padding(
@@ -56,7 +56,7 @@ class _VibeToSongState extends State<VibeToSong> {
                             nullArtworkWidget: Icon(
                               Icons.library_music_outlined,
                               size: 200,
-                              color: coolGradients[8][0],
+                              color: coolGradients[0][0],
                             ),
                           ),
                         ),

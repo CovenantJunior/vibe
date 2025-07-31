@@ -5,6 +5,12 @@ List<List<Color>> coolGradients = [
 
   /* FREE SKINS */
 
+  // Gradient Skin 0: Dark
+  [
+    const Color.fromARGB(128, 0, 0, 0), // Dark Blue
+    const Color.fromARGB(128, 0, 0, 0), // Aqua
+  ],
+
   // Gradient Skin 1: Ocean Waves
   [
     const Color(0xFF2E3192), // Dark Blue

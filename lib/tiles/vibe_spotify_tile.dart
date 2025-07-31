@@ -16,7 +16,7 @@ class _VibeSpotifyTileState extends State<VibeSpotifyTile> {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: coolGradients[8],
+          colors: coolGradients[0],
         ),
       ),
     );

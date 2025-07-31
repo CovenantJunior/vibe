@@ -37,7 +37,7 @@ class _VibeBottomSheetState extends State<VibeBottomSheet> with SingleTickerProv
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: coolGradients[8],
+          colors: coolGradients[0],
         ),
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30),

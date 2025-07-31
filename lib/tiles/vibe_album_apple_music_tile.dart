@@ -16,7 +16,7 @@ class _VibeAppleMusicTileState extends State<VibeAppleMusicTile> {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: coolGradients[8],
+          colors: coolGradients[0],
         ),
       ),
     );

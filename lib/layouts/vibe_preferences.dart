@@ -74,7 +74,7 @@ class _VibePreferenceState extends State<VibePreference> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: coolGradients[8][0],
+        backgroundColor: coolGradients[0][0],
       ),
 
       body: Container(
@@ -82,7 +82,7 @@ class _VibePreferenceState extends State<VibePreference> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: coolGradients[8],
+            colors: coolGradients[0],
           ),
         ),
         child: const Column(

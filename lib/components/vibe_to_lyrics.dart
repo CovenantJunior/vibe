@@ -21,7 +21,7 @@ class _VibeToLyricsState extends State<VibeToLyrics> {
         gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: coolGradients[8],
+            colors: coolGradients[0],
           ),
       ),
     );

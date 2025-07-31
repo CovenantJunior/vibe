@@ -99,7 +99,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with TickerProviderStateM
                   gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: coolGradients[8],
+                      colors: coolGradients[0],
                     ),
                 ),
                 child: const Center(child: CircularProgressIndicator())
@@ -112,7 +112,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with TickerProviderStateM
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: coolGradients[8],
+                    colors: coolGradients[0],
                   ),
                 ),
                 child: const Center(child: Text('No music files found', style: TextStyle(
@@ -126,7 +126,7 @@ class _VibeSongsTileState extends State<VibeSongsTile> with TickerProviderStateM
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: coolGradients[8],
+                    colors: coolGradients[0],
                   ),
                 ),
                 child: ListView.builder(
